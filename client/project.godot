@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="client"
+config/version="0.1.0"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="vulbr"
+config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
+config/icon="res://icon.svg"
+
+[autoload]
+
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+Vulnus="*res://scripts/Vulnus.gd"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+
+[dotnet]
+
+project/assembly_name="client"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
+
+[gui]
+
+theme/custom="res://default_theme.tres"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.12549, 0.12549, 0.188235, 1)

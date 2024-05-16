@@ -1,0 +1,206 @@
+[gd_scene load_steps=20 format=3 uid="uid://dkcrfpmvq5vv"]
+
+[ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
+[ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
+[ext_resource type="Theme" uid="uid://dut6qr4yh7d1x" path="res://hud_theme.tres" id="3_5ufw0"]
+[ext_resource type="ArrayMesh" uid="uid://bnf74u80x5fe2" path="res://meshes/Square.obj" id="3_twetm"]
+[ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
+
+[sub_resource type="Environment" id="Environment_idrjf"]
+reflected_light_source = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_vclc6"]
+size = Vector2(0.525, 0.525)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gxv1"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_vnch3")
+
+[sub_resource type="QuadMesh" id="QuadMesh_21xkh"]
+size = Vector2(6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0jnh"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_kgxvv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_drcd7"]
+size = Vector2(6, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lnqqj"]
+viewport_path = NodePath("HUD/Timer/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nj7fy"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_lnqqj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gh4i8"]
+size = Vector2(6, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7ocnn"]
+viewport_path = NodePath("HUD/Health/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pfqf"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_7ocnn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igp5d"]
+bg_color = Color(1, 0.141176, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8wfk"]
+bg_color = Color(0.188235, 1, 0.282353, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="MultiMesh" id="MultiMesh_fwhkp"]
+transform_format = 1
+use_colors = true
+mesh = ExtResource("3_twetm")
+
+[node name="Game" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_idrjf")
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 7.5)
+current = true
+fov = 70.0
+near = 0.01
+
+[node name="Cursor" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("QuadMesh_vclc6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8gxv1")
+
+[node name="HUD" type="Node3D" parent="."]
+
+[node name="Border" type="MeshInstance3D" parent="HUD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102558, -0.0152874, 0.0118389)
+mesh = SubResource("QuadMesh_21xkh")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u0jnh")
+
+[node name="Timer" type="MeshInstance3D" parent="HUD"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 3.6, 0)
+mesh = SubResource("QuadMesh_drcd7")
+surface_material_override/0 = SubResource("StandardMaterial3D_nj7fy")
+
+[node name="SubViewport" type="SubViewport" parent="HUD/Timer"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(600, 100)
+
+[node name="Control" type="VBoxContainer" parent="HUD/Timer/SubViewport"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_5ufw0")
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="SongTitle" type="Label" parent="HUD/Timer/SubViewport/Control"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 24
+text = "Really Long Song Artist Name - Really Long Song Title (feat. Really Long Song Artist Name) (Really Long Song Artist Remix)"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+text_overrun_behavior = 4
+
+[node name="Timer" type="HBoxContainer" parent="HUD/Timer/SubViewport/Control"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Start" type="Label" parent="HUD/Timer/SubViewport/Control/Timer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0:00"
+vertical_alignment = 2
+
+[node name="End" type="Label" parent="HUD/Timer/SubViewport/Control/Timer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0:00"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Progress" type="ProgressBar" parent="HUD/Timer/SubViewport/Control"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+value = 25.34
+show_percentage = false
+
+[node name="Health" type="MeshInstance3D" parent="HUD"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -3.6, 0)
+mesh = SubResource("QuadMesh_gh4i8")
+surface_material_override/0 = SubResource("StandardMaterial3D_8pfqf")
+
+[node name="SubViewport" type="SubViewport" parent="HUD/Health"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(600, 100)
+
+[node name="Control" type="VBoxContainer" parent="HUD/Health/SubViewport"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_5ufw0")
+theme_override_constants/separation = 0
+
+[node name="Health" type="ProgressBar" parent="HUD/Health/SubViewport/Control"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_igp5d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o8wfk")
+max_value = 40.0
+value = 20.0
+show_percentage = false
+
+[node name="Mods" type="HBoxContainer" parent="HUD/Health/SubViewport/Control"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Note" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.875, 0, 0, 0, 0.875, 0, 0, 0, 0.875, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("3_twetm")
+surface_material_override/0 = ExtResource("4_gsxrx")
+
+[node name="Notes" type="MultiMeshInstance3D" parent="."]
+material_override = ExtResource("4_gsxrx")
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_fwhkp")

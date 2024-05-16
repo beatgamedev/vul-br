@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxmfr8ytmaijv"]
+
+[ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_neub8"]
+
+[node name="Menu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_neub8")
+color = Color(0.12549, 0.12549, 0.188235, 1)
+
+[node name="H" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 384)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Lobbies" type="Panel" parent="H"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="H/Lobbies"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -36.0
+theme_override_font_sizes/font_size = 24
+text = "Public Lobbies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="VBoxContainer" parent="H/Lobbies"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Lobbies" type="ScrollContainer" parent="H/Lobbies/V"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="M" type="MarginContainer" parent="H/Lobbies/V/Lobbies"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 4
+
+[node name="V" type="VBoxContainer" parent="H/Lobbies/V/Lobbies/M"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="H/Lobbies/V/Lobbies/M/V"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="CreatePublic" type="Button" parent="H/Lobbies/V"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Create Public Lobby"
+
+[node name="Label" type="Label" parent="H/Lobbies/V/CreatePublic"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Create Public Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreatePrivate" type="Button" parent="H/Lobbies/V"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Create Private Lobby"
+
+[node name="Label" type="Label" parent="H/Lobbies/V/CreatePrivate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Create Private Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
