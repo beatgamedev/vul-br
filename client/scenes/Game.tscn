@@ -90,13 +90,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8gxv1")
 [node name="HUD" type="Node3D" parent="."]
 
 [node name="Border" type="MeshInstance3D" parent="HUD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102558, -0.0152874, 0.0118389)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 mesh = SubResource("QuadMesh_21xkh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u0jnh")
 
 [node name="Timer" type="MeshInstance3D" parent="HUD"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 3.6, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.15911, -0.310583, 0, 0.310583, 1.15911, 0, 4.4, -1.4)
 mesh = SubResource("QuadMesh_drcd7")
 surface_material_override/0 = SubResource("StandardMaterial3D_nj7fy")
 
@@ -107,7 +107,7 @@ snap_2d_transforms_to_pixel = true
 size = Vector2i(600, 100)
 
 [node name="Control" type="VBoxContainer" parent="HUD/Timer/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
@@ -157,7 +157,7 @@ value = 25.34
 show_percentage = false
 
 [node name="Health" type="MeshInstance3D" parent="HUD"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -3.6, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.15911, 0.310583, 0, -0.310583, 1.15911, 0, -4.4, -1.4)
 mesh = SubResource("QuadMesh_gh4i8")
 surface_material_override/0 = SubResource("StandardMaterial3D_8pfqf")
 
@@ -168,7 +168,7 @@ snap_2d_transforms_to_pixel = true
 size = Vector2i(600, 100)
 
 [node name="Control" type="VBoxContainer" parent="HUD/Health/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
