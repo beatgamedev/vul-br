@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=33 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
 [ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
@@ -8,6 +8,9 @@
 [ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
 [ext_resource type="ArrayMesh" uid="uid://brofpmepi0fu6" path="res://meshes/Squircle.obj" id="4_py17r"]
 [ext_resource type="Script" path="res://scripts/game/AudioSyncManager.gd" id="6_hyrnf"]
+[ext_resource type="FontFile" uid="uid://djiyr36bndnx8" path="res://fonts/Lato/Lato-Bold.ttf" id="8_i0il3"]
+[ext_resource type="FontFile" uid="uid://b4s0y2411xmot" path="res://fonts/Lato/Lato-Light.ttf" id="9_2wq8n"]
+[ext_resource type="Texture2D" uid="uid://dr42soyc4s8t2" path="res://images/progress.png" id="10_fuuq1"]
 
 [sub_resource type="Environment" id="Environment_idrjf"]
 reflected_light_source = 1
@@ -66,6 +69,37 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="QuadMesh" id="QuadMesh_8mtju"]
+size = Vector2(2, 5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2bec3"]
+viewport_path = NodePath("HUD/LeftPanel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2koc"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2bec3")
+
+[sub_resource type="Gradient" id="Gradient_6t2ia"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b21lj"]
+gradient = SubResource("Gradient_6t2ia")
+width = 200
+height = 500
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a8sp2"]
+viewport_path = NodePath("HUD/RightPanel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sqos2"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_a8sp2")
+
 [sub_resource type="MultiMesh" id="MultiMesh_fwhkp"]
 transform_format = 1
 use_colors = true
@@ -81,6 +115,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 cast_shadow = 0
 mesh = ExtResource("3_twetm")
 skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_gsxrx")
 
 [node name="Circle" type="MeshInstance3D" parent="Preload"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -177,7 +212,7 @@ vertical_alignment = 2
 [node name="Progress" type="ProgressBar" parent="HUD/Timer/SubViewport/Control"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
-value = 25.34
+value = 50.0
 show_percentage = false
 
 [node name="Health" type="MeshInstance3D" parent="HUD"]
@@ -217,6 +252,240 @@ show_percentage = false
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+
+[node name="LeftPanel" type="MeshInstance3D" parent="HUD"]
+transform = Transform3D(1.93185, 0, 0.517638, 0, 2, 0, -0.517638, 0, 1.93185, -7, 0, -6)
+mesh = SubResource("QuadMesh_8mtju")
+surface_material_override/0 = SubResource("StandardMaterial3D_s2koc")
+
+[node name="SubViewport" type="SubViewport" parent="HUD/LeftPanel"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(200, 500)
+
+[node name="Control" type="TextureRect" parent="HUD/LeftPanel/SubViewport"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+theme = ExtResource("3_5ufw0")
+texture = SubResource("GradientTexture2D_b21lj")
+expand_mode = 1
+
+[node name="Line" type="ColorRect" parent="HUD/LeftPanel/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+
+[node name="V" type="Control" parent="HUD/LeftPanel/SubViewport/Control"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Rank" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
+layout_mode = 2
+offset_top = 85.0
+offset_right = 185.0
+offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("8_i0il3")
+theme_override_font_sizes/font_size = 80
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Placement" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 198.0
+offset_right = 185.0
+offset_bottom = 262.0
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V/Placement"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_2wq8n")
+text = "PLACEMENT"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Score" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 266.0
+offset_right = 185.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 32
+text = "999,999,999"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V/Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_2wq8n")
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Accuracy" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 334.0
+offset_right = 185.0
+offset_bottom = 398.0
+theme_override_font_sizes/font_size = 32
+text = "99.99%"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V/Accuracy"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_2wq8n")
+text = "ACCURACY"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/LeftPanel/SubViewport/Control"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 500.0
+
+[node name="RightPanel" type="MeshInstance3D" parent="HUD"]
+transform = Transform3D(1.93185, 0, -0.517637, 0, 2, 0, 0.517637, 0, 1.93185, 7, 0, -6)
+mesh = SubResource("QuadMesh_8mtju")
+surface_material_override/0 = SubResource("StandardMaterial3D_sqos2")
+
+[node name="SubViewport" type="SubViewport" parent="HUD/RightPanel"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(200, 500)
+
+[node name="Control" type="TextureRect" parent="HUD/RightPanel/SubViewport"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+theme = ExtResource("3_5ufw0")
+texture = SubResource("GradientTexture2D_b21lj")
+expand_mode = 1
+
+[node name="Line" type="ColorRect" parent="HUD/RightPanel/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+
+[node name="V" type="Control" parent="HUD/RightPanel/SubViewport/Control"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Multiplier" type="AspectRatioContainer" parent="HUD/RightPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+offset_top = 64.0
+offset_right = 185.0
+offset_bottom = 192.0
+
+[node name="Spinner" type="TextureProgressBar" parent="HUD/RightPanel/SubViewport/Control/V/Multiplier"]
+layout_mode = 2
+max_value = 10.0
+step = 0.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("10_fuuq1")
+texture_progress = ExtResource("10_fuuq1")
+tint_under = Color(0.12549, 0.12549, 0.12549, 0.392157)
+
+[node name="Label" type="Label" parent="HUD/RightPanel/SubViewport/Control/V/Multiplier"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_i0il3")
+theme_override_font_sizes/font_size = 72
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Combo" type="Label" parent="HUD/RightPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 266.0
+offset_right = 185.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 32
+text = "999,999,999"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HUD/RightPanel/SubViewport/Control/V/Combo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_2wq8n")
+text = "COMBO"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Misses" type="Label" parent="HUD/RightPanel/SubViewport/Control/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 334.0
+offset_right = 185.0
+offset_bottom = 398.0
+theme_override_font_sizes/font_size = 32
+text = "999,999,999"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HUD/RightPanel/SubViewport/Control/V/Misses"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_2wq8n")
+text = "MISSES"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/RightPanel/SubViewport/Control"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 500.0
 
 [node name="Notes" type="MultiMeshInstance3D" parent="."]
 material_override = ExtResource("4_gsxrx")

@@ -67,7 +67,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afb4b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cgmt"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -124,7 +124,7 @@ Label/constants/outline_size = 2
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 2
-Panel/styles/panel = SubResource("StyleBoxFlat_afb4b")
+Panel/styles/panel = SubResource("StyleBoxFlat_0cgmt")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_vxryh")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_rl8jb")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_ieu18")
