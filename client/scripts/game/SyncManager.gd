@@ -1,4 +1,4 @@
-extends GameManager
+extends Node
 class_name SyncManager
 
 signal started
@@ -16,7 +16,7 @@ var physics_time:float:
 	get: return self.current_time + physics_offset
 @export var length:float = 0
 
-@onready var game_offset:float = float(_find_game().settings.offset.music) / 1000.0
+@onready var game_offset:float = 0
 
 @export var parent_sync_manager:SyncManager
 
@@ -32,19 +32,6 @@ func finish():
 	playing = false
 	finished.emit()
 
-var paused:bool = false
-func _notification(what):
-	if what == Node.NOTIFICATION_PAUSED:
-		paused = true
-		just_paused()
-	elif what == Node.NOTIFICATION_UNPAUSED:
-		paused = false
-		just_unpaused()
-func just_paused():
-	pass
-func just_unpaused():
-	last_time = Time.get_ticks_usec()
-
 func _process(delta):
 	if parent_sync_manager != null:
 		playing = parent_sync_manager.playing
@@ -52,9 +39,6 @@ func _process(delta):
 		real_time = parent_sync_manager.real_time
 		return
 	if !playing: return
-	if !is_multiplayer_authority():
-		current_time = real_time + game_offset
-		return
 	physics_offset = 0
 	var now = Time.get_ticks_usec()
 	var time = playback_speed * (now - last_time) / 1000000.0

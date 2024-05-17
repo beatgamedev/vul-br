@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=21 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
 [ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
 [ext_resource type="Theme" uid="uid://dut6qr4yh7d1x" path="res://hud_theme.tres" id="3_5ufw0"]
 [ext_resource type="ArrayMesh" uid="uid://bnf74u80x5fe2" path="res://meshes/Square.obj" id="3_twetm"]
 [ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
+[ext_resource type="Script" path="res://scripts/game/AudioSyncManager.gd" id="6_hyrnf"]
 
 [sub_resource type="Environment" id="Environment_idrjf"]
 reflected_light_source = 1
@@ -204,3 +205,9 @@ surface_material_override/0 = ExtResource("4_gsxrx")
 material_override = ExtResource("4_gsxrx")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_fwhkp")
+
+[node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("6_hyrnf")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioSyncManager"]

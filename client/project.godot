@@ -40,6 +40,11 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 theme/custom="res://default_theme.tres"
 
+[physics]
+
+common/physics_ticks_per_second=128
+common/max_physics_steps_per_frame=1
+
 [rendering]
 
 renderer/rendering_method="mobile"
