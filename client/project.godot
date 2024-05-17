@@ -28,6 +28,8 @@ Vulnus="*res://scripts/Vulnus.gd"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -57,5 +59,4 @@ common/max_physics_steps_per_frame=1
 
 [rendering]
 
-renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0.12549, 0.12549, 0.188235, 1)
