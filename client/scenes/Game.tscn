@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=23 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
 [ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
 [ext_resource type="Theme" uid="uid://dut6qr4yh7d1x" path="res://hud_theme.tres" id="3_5ufw0"]
+[ext_resource type="ArrayMesh" uid="uid://fyuykc74uk4c" path="res://meshes/Circle.obj" id="3_hywtp"]
 [ext_resource type="ArrayMesh" uid="uid://bnf74u80x5fe2" path="res://meshes/Square.obj" id="3_twetm"]
 [ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
+[ext_resource type="ArrayMesh" uid="uid://brofpmepi0fu6" path="res://meshes/Squircle.obj" id="4_py17r"]
 [ext_resource type="Script" path="res://scripts/game/AudioSyncManager.gd" id="6_hyrnf"]
 
 [sub_resource type="Environment" id="Environment_idrjf"]
@@ -71,6 +73,27 @@ mesh = ExtResource("3_twetm")
 
 [node name="Game" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Preload" type="Node3D" parent="."]
+
+[node name="Square" type="MeshInstance3D" parent="Preload"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("3_twetm")
+skeleton = NodePath("../..")
+
+[node name="Circle" type="MeshInstance3D" parent="Preload"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("3_hywtp")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_gsxrx")
+
+[node name="Squircle" type="MeshInstance3D" parent="Preload"]
+cast_shadow = 0
+mesh = ExtResource("4_py17r")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_gsxrx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_idrjf")
@@ -194,12 +217,6 @@ show_percentage = false
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
-
-[node name="Note" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.875, 0, 0, 0, 0.875, 0, 0, 0, 0.875, 0, 0, 0)
-cast_shadow = 0
-mesh = ExtResource("3_twetm")
-surface_material_override/0 = ExtResource("4_gsxrx")
 
 [node name="Notes" type="MultiMeshInstance3D" parent="."]
 material_override = ExtResource("4_gsxrx")
