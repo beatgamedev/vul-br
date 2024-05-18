@@ -37,5 +37,5 @@ func update_accuracy():
 	_accuracy_tween.play()
 
 func _process(delta):
-	score.text = Vulnus.comma_separate(_score)
+	score.text = Globals.comma_separate(_score)
 	accuracy.text = "%.2f%%" % (_accuracy * 100)

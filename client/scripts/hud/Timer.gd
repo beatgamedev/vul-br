@@ -12,7 +12,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	start_label.text = Vulnus.seconds_to_timestamp(sync_manager.real_time)
-	end_label.text = Vulnus.seconds_to_timestamp(sync_manager.length)
+	start_label.text = Globals.seconds_to_timestamp(sync_manager.real_time)
+	end_label.text = Globals.seconds_to_timestamp(sync_manager.length)
 	progress_bar.max_value = sync_manager.length
 	progress_bar.value = sync_manager.real_time
