@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=38 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
 [ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
@@ -8,9 +8,14 @@
 [ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
 [ext_resource type="ArrayMesh" uid="uid://brofpmepi0fu6" path="res://meshes/Squircle.obj" id="4_py17r"]
 [ext_resource type="Script" path="res://scripts/game/AudioSyncManager.gd" id="6_hyrnf"]
+[ext_resource type="Script" path="res://scripts/hud/Timer.gd" id="7_hqtlo"]
+[ext_resource type="Script" path="res://scripts/hud/LeftPanel.gd" id="8_ef8b0"]
 [ext_resource type="FontFile" uid="uid://djiyr36bndnx8" path="res://fonts/Lato/Lato-Bold.ttf" id="8_i0il3"]
 [ext_resource type="FontFile" uid="uid://b4s0y2411xmot" path="res://fonts/Lato/Lato-Light.ttf" id="9_2wq8n"]
+[ext_resource type="Script" path="res://scripts/hud/Health.gd" id="9_x66n0"]
 [ext_resource type="Texture2D" uid="uid://dr42soyc4s8t2" path="res://images/progress.png" id="10_fuuq1"]
+[ext_resource type="Script" path="res://scripts/hud/RightPanel.gd" id="11_5an3l"]
+[ext_resource type="AudioStream" uid="uid://cfnmtlyv3ouoq" path="res://sounds/menu.mp3" id="16_kru5h"]
 
 [sub_resource type="Environment" id="Environment_idrjf"]
 reflected_light_source = 1
@@ -154,10 +159,12 @@ mesh = SubResource("QuadMesh_21xkh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u0jnh")
 
-[node name="Timer" type="MeshInstance3D" parent="HUD"]
+[node name="Timer" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("sync_manager")]
 transform = Transform3D(1.2, 0, 0, 0, 1.15911, -0.310583, 0, 0.310583, 1.15911, 0, 4.4, -1.4)
 mesh = SubResource("QuadMesh_drcd7")
 surface_material_override/0 = SubResource("StandardMaterial3D_nj7fy")
+script = ExtResource("7_hqtlo")
+sync_manager = NodePath("../../AudioSyncManager")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/Timer"]
 disable_3d = true
@@ -216,9 +223,10 @@ value = 50.0
 show_percentage = false
 
 [node name="Health" type="MeshInstance3D" parent="HUD"]
-transform = Transform3D(1.2, 0, 0, 0, 1.15911, 0.310583, 0, -0.310583, 1.15911, 0, -4.4, -1.4)
+transform = Transform3D(1.2, 0, 0, 0, 1.15911, 0.310583, 0, -0.310583, 1.15911, 0, -4, -1.4)
 mesh = SubResource("QuadMesh_gh4i8")
 surface_material_override/0 = SubResource("StandardMaterial3D_8pfqf")
+script = ExtResource("9_x66n0")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/Health"]
 disable_3d = true
@@ -226,7 +234,8 @@ transparent_bg = true
 snap_2d_transforms_to_pixel = true
 size = Vector2i(600, 100)
 
-[node name="Control" type="VBoxContainer" parent="HUD/Health/SubViewport"]
+[node name="Control" type="Control" parent="HUD/Health/SubViewport"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -237,11 +246,13 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_5ufw0")
-theme_override_constants/separation = 0
 
 [node name="Health" type="ProgressBar" parent="HUD/Health/SubViewport/Control"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+offset_top = 24.0
+offset_right = 598.0
+offset_bottom = 36.0
 theme_override_styles/background = SubResource("StyleBoxFlat_igp5d")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o8wfk")
 max_value = 40.0
@@ -250,6 +261,9 @@ show_percentage = false
 
 [node name="Mods" type="HBoxContainer" parent="HUD/Health/SubViewport/Control"]
 layout_mode = 2
+offset_top = 12.0
+offset_right = 598.0
+offset_bottom = 12.0
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -257,6 +271,7 @@ alignment = 1
 transform = Transform3D(1.93185, 0, 0.517638, 0, 2, 0, -0.517638, 0, 1.93185, -7, 0, -6)
 mesh = SubResource("QuadMesh_8mtju")
 surface_material_override/0 = SubResource("StandardMaterial3D_s2koc")
+script = ExtResource("8_ef8b0")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/LeftPanel"]
 disable_3d = true
@@ -378,6 +393,7 @@ offset_bottom = 500.0
 transform = Transform3D(1.93185, 0, -0.517637, 0, 2, 0, 0.517637, 0, 1.93185, 7, 0, -6)
 mesh = SubResource("QuadMesh_8mtju")
 surface_material_override/0 = SubResource("StandardMaterial3D_sqos2")
+script = ExtResource("11_5an3l")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/RightPanel"]
 disable_3d = true
@@ -422,7 +438,7 @@ offset_bottom = 192.0
 
 [node name="Spinner" type="TextureProgressBar" parent="HUD/RightPanel/SubViewport/Control/V/Multiplier"]
 layout_mode = 2
-max_value = 10.0
+max_value = 9.0
 step = 0.0
 fill_mode = 4
 nine_patch_stretch = true
@@ -495,5 +511,6 @@ multimesh = SubResource("MultiMesh_fwhkp")
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_hyrnf")
 audio_player = NodePath("AudioStreamPlayer")
+audio_stream = ExtResource("16_kru5h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioSyncManager"]

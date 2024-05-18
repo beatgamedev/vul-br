@@ -25,9 +25,10 @@ func start(from:float=0):
 	real_time = min(from - game_offset * playback_speed, from)
 	playing = true
 	started.emit(current_time)
-func seek(from:float=0):
+func seek(from:float=0, real:bool=false):
 	last_time = Time.get_ticks_usec()
-	real_time = from - game_offset * playback_speed
+	if !real: real_time = from - game_offset * playback_speed
+	else: real_time = from
 func finish():
 	playing = false
 	finished.emit()

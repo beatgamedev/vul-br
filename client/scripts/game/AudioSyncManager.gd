@@ -6,7 +6,7 @@ signal started_audio
 @export var audio_player:AudioStreamPlayer
 var audio_started:bool = false
 
-var audio_stream:AudioStream:
+@export var audio_stream:AudioStream:
 	get:
 		return audio_stream
 	set(value):
@@ -32,17 +32,20 @@ func _start_audio():
 
 func _process(delta:float):
 	super._process(delta)
-	if !playing: return
 	var should_be_playing = real_time >= 0 and playback_speed > 0 and real_time <= length
 	if !audio_player.playing and should_be_playing and !audio_started:
 		_start_audio()
 	if audio_player.playing and !should_be_playing:
 		audio_player.stop()
+	if !playing: return
 	if playback_speed > 0:
 		audio_player.pitch_scale = playback_speed
+	if audio_player.playing and should_be_playing:
+		var difference = abs(audio_player.get_playback_position() - real_time)
+		if difference >= time_delay * 2: _set_offset()
 
-func seek(from:float=0):
-	super.seek(from)
+func seek(from:float=0, real:bool=false):
+	super.seek(from, real)
 	_set_offset()
 
 #func try_finish():
