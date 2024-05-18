@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=39 format=3 uid="uid://dkcrfpmvq5vv"]
 
+[ext_resource type="Script" path="res://scripts/game/Game.gd" id="1_0gei0"]
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
 [ext_resource type="Texture2D" uid="uid://ccndpcpdgqbru" path="res://images/border.png" id="2_kgxvv"]
 [ext_resource type="Theme" uid="uid://dut6qr4yh7d1x" path="res://hud_theme.tres" id="3_5ufw0"]
@@ -112,6 +113,7 @@ mesh = ExtResource("3_twetm")
 
 [node name="Game" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_0gei0")
 
 [node name="Preload" type="Node3D" parent="."]
 
@@ -280,7 +282,7 @@ snap_2d_transforms_to_pixel = true
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/LeftPanel/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
@@ -300,12 +302,15 @@ grow_horizontal = 2
 
 [node name="V" type="Control" parent="HUD/LeftPanel/SubViewport/Control"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = -4.0
 offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Rank" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
 layout_mode = 2
@@ -402,7 +407,7 @@ snap_2d_transforms_to_pixel = true
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/RightPanel/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
@@ -422,12 +427,15 @@ grow_horizontal = 2
 
 [node name="V" type="Control" parent="HUD/RightPanel/SubViewport/Control"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = -4.0
 offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Multiplier" type="AspectRatioContainer" parent="HUD/RightPanel/SubViewport/Control/V"]
 custom_minimum_size = Vector2(0, 160)
