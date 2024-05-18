@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=40 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Script" path="res://scripts/game/Game.gd" id="1_0gei0"]
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://2pji8te053l1" path="res://materials/NoteShader.tres" id="4_gsxrx"]
 [ext_resource type="ArrayMesh" uid="uid://brofpmepi0fu6" path="res://meshes/Squircle.obj" id="4_py17r"]
 [ext_resource type="Script" path="res://scripts/game/AudioSyncManager.gd" id="6_hyrnf"]
+[ext_resource type="Script" path="res://scripts/game/Player.gd" id="6_iq4sr"]
 [ext_resource type="Script" path="res://scripts/hud/Timer.gd" id="7_hqtlo"]
 [ext_resource type="Script" path="res://scripts/hud/LeftPanel.gd" id="8_ef8b0"]
 [ext_resource type="FontFile" uid="uid://djiyr36bndnx8" path="res://fonts/Lato/Lato-Bold.ttf" id="8_i0il3"]
@@ -141,9 +142,10 @@ surface_material_override/0 = ExtResource("4_gsxrx")
 environment = SubResource("Environment_idrjf")
 
 [node name="Player" type="Node3D" parent="."]
+script = ExtResource("6_iq4sr")
 
 [node name="Camera" type="Camera3D" parent="Player"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 current = true
 fov = 70.0
 near = 0.01
@@ -224,11 +226,12 @@ layout_mode = 2
 value = 50.0
 show_percentage = false
 
-[node name="Health" type="MeshInstance3D" parent="HUD"]
+[node name="Health" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("game")]
 transform = Transform3D(1.2, 0, 0, 0, 1.15911, 0.310583, 0, -0.310583, 1.15911, 0, -4, -1.4)
 mesh = SubResource("QuadMesh_gh4i8")
 surface_material_override/0 = SubResource("StandardMaterial3D_8pfqf")
 script = ExtResource("9_x66n0")
+game = NodePath("../..")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/Health"]
 disable_3d = true
@@ -269,11 +272,12 @@ offset_bottom = 12.0
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="LeftPanel" type="MeshInstance3D" parent="HUD"]
+[node name="LeftPanel" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("game")]
 transform = Transform3D(1.93185, 0, 0.517638, 0, 2, 0, -0.517638, 0, 1.93185, -7, 0, -6)
 mesh = SubResource("QuadMesh_8mtju")
 surface_material_override/0 = SubResource("StandardMaterial3D_s2koc")
 script = ExtResource("8_ef8b0")
+game = NodePath("../..")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/LeftPanel"]
 disable_3d = true
@@ -389,16 +393,12 @@ text = "ACCURACY"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="HUD/LeftPanel/SubViewport/Control"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 500.0
-
-[node name="RightPanel" type="MeshInstance3D" parent="HUD"]
+[node name="RightPanel" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("game")]
 transform = Transform3D(1.93185, 0, -0.517637, 0, 2, 0, 0.517637, 0, 1.93185, 7, 0, -6)
 mesh = SubResource("QuadMesh_8mtju")
 surface_material_override/0 = SubResource("StandardMaterial3D_sqos2")
 script = ExtResource("11_5an3l")
+game = NodePath("../..")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/RightPanel"]
 disable_3d = true
@@ -505,11 +505,6 @@ theme_override_fonts/font = ExtResource("9_2wq8n")
 text = "MISSES"
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="HUD/RightPanel/SubViewport/Control"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 500.0
 
 [node name="Notes" type="MultiMeshInstance3D" parent="."]
 material_override = ExtResource("4_gsxrx")
