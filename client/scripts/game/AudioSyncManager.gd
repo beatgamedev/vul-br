@@ -4,7 +4,6 @@ class_name AudioSyncManager
 signal started_audio
 
 @export var audio_player:AudioStreamPlayer
-var audio_started:bool = false
 
 @export var audio_stream:AudioStream:
 	get:
@@ -18,7 +17,6 @@ func _set_offset():
 	time_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
 	audio_player.seek(real_time + time_delay)
 func _start_audio():
-	audio_started = true
 	if audio_stream is AudioStreamMP3:
 		audio_stream.loop = false
 	if audio_stream is AudioStreamOggVorbis:
@@ -32,17 +30,21 @@ func _start_audio():
 
 func _process(delta:float):
 	super._process(delta)
-	var should_be_playing = real_time >= 0 and playback_speed > 0 and real_time <= length
-	if !audio_player.playing and should_be_playing and !audio_started:
+	var can_play_audio = real_time >= 0 and playback_speed > 0 and real_time <= length
+	var should_play_audio = can_play_audio and playing
+	var is_playing_audio = audio_player.playing
+
+	if should_play_audio and !is_playing_audio:
 		_start_audio()
-	if audio_player.playing and !should_be_playing:
+	if is_playing_audio and !should_play_audio:
 		audio_player.stop()
-	if !playing: return
-	if playback_speed > 0:
-		audio_player.pitch_scale = playback_speed
-	if audio_player.playing and should_be_playing:
+
+	if should_play_audio and is_playing_audio:
 		var difference = abs(audio_player.get_playback_position() - real_time)
 		if difference >= time_delay * 2: _set_offset()
+
+	if playback_speed > 0:
+		audio_player.pitch_scale = playback_speed
 
 func seek(from:float=0, real:bool=false):
 	super.seek(from, real)
