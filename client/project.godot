@@ -17,7 +17,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="vulbr"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://images/vulnus.png"
 
 [autoload]
 
