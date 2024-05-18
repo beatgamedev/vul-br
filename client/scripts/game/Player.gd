@@ -44,8 +44,9 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_delta = event.relative
 		if spin:
-			pitch -= mouse_delta.y / 10
-			yaw -= mouse_delta.x / 10
+			pitch = wrap(pitch - mouse_delta.y / 10, -180, 180)
+			if abs(pitch) < 90: yaw = wrap(yaw - mouse_delta.x / 10, -180, 180)
+			else: yaw = wrap(yaw + mouse_delta.x / 10, -180, 180)
 		else:
 			real_cursor_position += mouse_delta * Vector2(1, -1) / 100
 			if drift: real_cursor_position = self.cursor_position
