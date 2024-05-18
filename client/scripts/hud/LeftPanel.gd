@@ -36,7 +36,6 @@ func update_accuracy():
 	_accuracy_tween.tween_property(self, "_accuracy", _target_accuracy, 0.1)
 	_accuracy_tween.play()
 
-
 func _process(delta):
 	score.text = Vulnus.comma_separate(_score)
 	accuracy.text = "%.2f%%" % (_accuracy * 100)
