@@ -5,7 +5,18 @@ signal multiplier_changed
 signal combo_changed
 signal health_changed
 
-var score:int = 0
+var _combo_score:int = 0
+var _max_combo_score:int = 120
+var _base_score:int = 0
+var _max_base_score:int = 120
+var score:int:
+	get:
+		var combo_portion = float(_combo_score) / float(_max_combo_score)
+		var accuracy_portion = float(_base_score) / float(_max_base_score)
+		return (
+			(500000 * combo_portion) +
+			(500000 * pow(accuracy_portion, 5))
+		)
 
 var multiplier:int = 1
 var sub_multiplier:int = 0
@@ -39,7 +50,8 @@ func add_hit(points:int):
 			sub_multiplier = 0
 		multiplier_changed.emit()
 
-	score += points * multiplier
+	_combo_score += sqrt(multiplier)
+	_base_score += 1
 	score_changed.emit()
 func add_miss():
 	misses += 1
