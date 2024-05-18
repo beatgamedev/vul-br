@@ -18,10 +18,12 @@ var real_cursor_position:Vector2 = Vector2.ZERO
 
 func _do_spin():
 	camera.rotation_degrees = Vector3(pitch, yaw, 0)
-	real_cursor_position = Vector2(camera.position.x, camera.position.y) + Vector2(
-		tan(camera.rotation.y),
-		-tan(camera.rotation.x)
-	) * -camera.position.z
+	var look = camera.basis.z
+	real_cursor_position = Vector2(camera.position.x, camera.position.y) - Vector2(
+		look.x,
+		look.y
+	) * abs(camera.position.z / look.z)
+	if drift: real_cursor_position = self.cursor_position
 func _do_lock():
 	pass
 
@@ -46,4 +48,4 @@ func _input(event):
 			yaw -= mouse_delta.x / 10
 		else:
 			real_cursor_position += mouse_delta * Vector2(1, -1) / 100
-		if drift: real_cursor_position = self.cursor_position
+			if drift: real_cursor_position = self.cursor_position
