@@ -351,14 +351,18 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Instructions" type="Label" parent="Lobbies/Private/V/Direct/V"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 18
-text = "You must have the correct port open for people to join your lobby."
+text = "You must open a port or use a program such as Hamachi for people to join your lobby."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="HostPort" type="LineEdit" parent="Lobbies/Private/V/Direct/V"]
+layout_mode = 2
+placeholder_text = "4444"
 
 [node name="Host" type="Button" parent="Lobbies/Private/V/Direct/V"]
 custom_minimum_size = Vector2(0, 32)

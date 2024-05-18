@@ -71,7 +71,7 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 
 # Settings
 var settings:Dictionary = {
-
+	"map_folders": []
 }
 func load_settings():
 	var settings_path = find_path("settings file")
@@ -89,7 +89,7 @@ func load_settings():
 			return
 		var data = json.data
 		for key in settings.keys():
-			if data.keys().has(key) and settings[key].get_class() == data[key].get_class():
+			if data.keys().has(key):
 				settings[key] = data[key]
 	else:
 		print("No existing settings")
@@ -103,7 +103,7 @@ func _ready():
 	load_settings()
 	DiscordRPC.app_id = 1239676558587723819
 	DiscordRPC.large_image = "icon"
-	DiscordRPC.large_image_text = "Vulnus Brasil"
+	#DiscordRPC.large_image_text = "Vulnus Brasil"
 	DiscordRPC.details = "Getting ready to ball out"
 	DiscordRPC.state = "Loading"
 
