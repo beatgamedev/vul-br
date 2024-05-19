@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://147bjgxy2pbf"
+path="res://.godot/imported/cover.png-ab8682a9e0cee9a5eaa0c45432f7f8bb.image"
+
+[deps]
+
+source_file="res://images/cover.png"
+dest_files=["res://.godot/imported/cover.png-ab8682a9e0cee9a5eaa0c45432f7f8bb.image"]
+
+[params]
+
