@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxmfr8ytmaijv"]
+[gd_scene load_steps=12 format=3 uid="uid://bxmfr8ytmaijv"]
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_neub8"]
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="2_8uqht"]
 [ext_resource type="Shader" path="res://shaders/TransitionCircle.gdshader" id="3_1bad4"]
+[ext_resource type="Script" path="res://scripts/menu/DirectConnection.gd" id="3_gyhda"]
 
 [sub_resource type="Curve" id="Curve_sj3ry"]
 _data = [Vector2(0, 0), 0.0, 20.0, 0, 0, Vector2(0.1, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -314,6 +315,7 @@ vertical_alignment = 1
 
 [node name="Direct" type="PanelContainer" parent="Lobbies/Private/V"]
 layout_mode = 2
+script = ExtResource("3_gyhda")
 
 [node name="V" type="VBoxContainer" parent="Lobbies/Private/V/Direct"]
 layout_mode = 2
@@ -326,7 +328,7 @@ text = "Direct Connection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IP" type="LineEdit" parent="Lobbies/Private/V/Direct/V"]
+[node name="JoinAddress" type="LineEdit" parent="Lobbies/Private/V/Direct/V"]
 layout_mode = 2
 placeholder_text = "127.0.0.1:4444"
 
