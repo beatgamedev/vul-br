@@ -1,12 +1,11 @@
 extends Node
 
-func load_audio(path:String) -> AudioStream:
-	var file:PackedByteArray = FileAccess.get_file_as_bytes(path)
+func load_audio(file:PackedByteArray) -> AudioStream:
 	var first4 = file.slice(0, 4)
 	var first3 = file.slice(0, 3)
 	var first2 = file.slice(0, 2)
 	if first4 == PackedByteArray([0x4f, 0x67, 0x67, 0x53]): # OggS
-		return AudioStreamOggVorbis.load_from_file(path)
+		return AudioStreamOggVorbis.load_from_buffer(file)
 	elif (
 		first3 == PackedByteArray([0x49, 0x44, 0x33]) or
 		first2 == PackedByteArray([])
