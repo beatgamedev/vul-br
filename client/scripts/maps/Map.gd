@@ -5,8 +5,7 @@ var broken:bool = false
 
 var id:String
 var title:String
-var artist:String
-var mappers:Array[String]
+var mappers:Array[String] = []
 var difficulty:String
 func load_metadata(): pass
 
@@ -14,7 +13,7 @@ var cover:ImageTexture = ImageTexture.create_from_image(preload("res://images/co
 func load_cover(): pass
 var music:AudioStream
 func load_music(): pass
-var notes:Array[Note]
+var notes:Array[Note] = []
 func load_notes(): pass
 
 class Note:

@@ -111,14 +111,6 @@ func _ready():
 
 	DiscordRPC.refresh()
 
-	var map1 = SspmMap.new()
-	print(map1.load_from_path(find_path("maps folder").path_join("friendly_father.sspm")))
-	map1.load_music()
-	var player = AudioStreamPlayer.new()
-	player.stream = map1.music
-	add_child(player)
-	player.play()
-
 func _process(delta):
 	DiscordRPC.run_callbacks()
 
