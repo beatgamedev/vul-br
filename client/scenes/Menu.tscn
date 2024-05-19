@@ -112,7 +112,7 @@ lifetime = 8.0
 preprocess = 4.0
 
 [node name="Lobbies" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 432)
+custom_minimum_size = Vector2(0, 512)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -334,17 +334,20 @@ layout_mode = 2
 [node name="Address" type="LineEdit" parent="Lobbies/Private/V/Direct/V/Server"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
 placeholder_text = "127.0.0.1"
 select_all_on_focus = true
 
 [node name="Port" type="LineEdit" parent="Lobbies/Private/V/Direct/V/Server"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 placeholder_text = "4444"
 select_all_on_focus = true
 
 [node name="Connect" type="Button" parent="Lobbies/Private/V/Direct/V"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Connect"
 
 [node name="Label" type="Label" parent="Lobbies/Private/V/Direct/V/Connect"]
@@ -354,6 +357,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 16
 text = "Connect"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -366,7 +370,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "You must open a port or use a program such as Hamachi for people to join your lobby."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -374,12 +378,14 @@ autowrap_mode = 3
 
 [node name="HostPort" type="LineEdit" parent="Lobbies/Private/V/Direct/V"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 placeholder_text = "4444"
 select_all_on_focus = true
 
 [node name="Host" type="Button" parent="Lobbies/Private/V/Direct/V"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Host"
 
 [node name="Label" type="Label" parent="Lobbies/Private/V/Direct/V/Host"]
@@ -389,6 +395,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 16
 text = "Host"
 horizontal_alignment = 1
 vertical_alignment = 1

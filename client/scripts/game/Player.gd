@@ -30,8 +30,10 @@ func _do_lock():
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.use_accumulated_input = false
 func _exit_tree():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.use_accumulated_input = true
 
 func _process(delta):
 	var _cursor_position = self.cursor_position
