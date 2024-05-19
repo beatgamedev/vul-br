@@ -103,6 +103,7 @@ func load_music():
 	music = Globals.load_audio(file.get_buffer(_music_length))
 func load_notes():
 	if broken: return
+	notes = []
 	var file = FileAccess.open(path, FileAccess.READ)
 	if sspm_version == 1:
 		file.seek(_notes_offset)

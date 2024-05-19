@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dkcrfpmvq5vv"]
+[gd_scene load_steps=41 format=3 uid="uid://dkcrfpmvq5vv"]
 
 [ext_resource type="Script" path="res://scripts/game/Game.gd" id="1_0gei0"]
 [ext_resource type="Texture2D" uid="uid://doyvvvhvghdo" path="res://images/cursor.png" id="1_vnch3"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dr42soyc4s8t2" path="res://images/progress.png" id="10_fuuq1"]
 [ext_resource type="Script" path="res://scripts/hud/RightPanel.gd" id="11_5an3l"]
 [ext_resource type="AudioStream" uid="uid://cfnmtlyv3ouoq" path="res://sounds/menu.mp3" id="16_kru5h"]
+[ext_resource type="Script" path="res://scripts/game/NoteManager.gd" id="17_mp14u"]
 
 [sub_resource type="Environment" id="Environment_idrjf"]
 reflected_light_source = 1
@@ -110,7 +111,7 @@ albedo_texture = SubResource("ViewportTexture_a8sp2")
 [sub_resource type="MultiMesh" id="MultiMesh_fwhkp"]
 transform_format = 1
 use_colors = true
-mesh = ExtResource("3_twetm")
+mesh = ExtResource("4_py17r")
 
 [node name="Game" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -163,11 +164,12 @@ mesh = SubResource("QuadMesh_21xkh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u0jnh")
 
-[node name="Timer" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("sync_manager")]
+[node name="Timer" type="MeshInstance3D" parent="HUD" node_paths=PackedStringArray("game", "sync_manager")]
 transform = Transform3D(1.2, 0, 0, 0, 1.15911, -0.310583, 0, 0.310583, 1.15911, 0, 4.4, -1.4)
 mesh = SubResource("QuadMesh_drcd7")
 surface_material_override/0 = SubResource("StandardMaterial3D_nj7fy")
 script = ExtResource("7_hqtlo")
+game = NodePath("../..")
 sync_manager = NodePath("../../AudioSyncManager")
 
 [node name="SubViewport" type="SubViewport" parent="HUD/Timer"]
@@ -506,10 +508,13 @@ text = "MISSES"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Notes" type="MultiMeshInstance3D" parent="."]
+[node name="Notes" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("game", "sync_manager")]
 material_override = ExtResource("4_gsxrx")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_fwhkp")
+script = ExtResource("17_mp14u")
+game = NodePath("..")
+sync_manager = NodePath("../AudioSyncManager")
 
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_hyrnf")

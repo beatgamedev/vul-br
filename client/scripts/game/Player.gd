@@ -4,7 +4,7 @@ extends Node
 @onready var camera_pivot:Vector3 = camera.position
 @onready var cursor:Node3D = $Cursor
 
-var spin:bool = true
+var spin:bool = false
 var drift:bool = true
 
 var pitch:float = 0

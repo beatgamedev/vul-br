@@ -1,5 +1,12 @@
 extends Node
 
+func change_scene(scene:Node):
+	_change_scene.call_deferred(scene)
+func _change_scene(scene:Node):
+	get_tree().unload_current_scene()
+	get_tree().root.add_child(scene)
+	get_tree().current_scene = scene
+
 func load_audio(file:PackedByteArray) -> AudioStream:
 	var first4 = file.slice(0, 4)
 	var first3 = file.slice(0, 3)

@@ -111,6 +111,12 @@ func _ready():
 
 	DiscordRPC.refresh()
 
+	var test_map = SspmMap.new()
+	test_map.load_from_path("user://maps/friendly_father.sspm")
+	var test_game = preload("res://scenes/Game.tscn").instantiate()
+	test_game.map = test_map
+	Globals.change_scene(test_game)
+
 func _process(delta):
 	DiscordRPC.run_callbacks()
 
