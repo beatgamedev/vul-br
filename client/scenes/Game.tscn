@@ -50,6 +50,7 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_lnqqj")
+texture_repeat = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_gh4i8"]
 size = Vector2(6, 1)
@@ -62,6 +63,7 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_7ocnn")
+texture_repeat = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igp5d"]
 bg_color = Color(1, 0.141176, 0.188235, 1)
@@ -88,6 +90,7 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_2bec3")
+texture_repeat = false
 
 [sub_resource type="Gradient" id="Gradient_6t2ia"]
 interpolation_mode = 2
@@ -107,6 +110,7 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_a8sp2")
+texture_repeat = false
 
 [sub_resource type="MultiMesh" id="MultiMesh_fwhkp"]
 transform_format = 1
@@ -176,16 +180,13 @@ sync_manager = NodePath("../../AudioSyncManager")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+msaa_2d = 1
 size = Vector2i(600, 100)
 
 [node name="Control" type="VBoxContainer" parent="HUD/Timer/SubViewport"]
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_5ufw0")
@@ -239,17 +240,13 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+msaa_2d = 1
 size = Vector2i(600, 100)
 
 [node name="Control" type="Control" parent="HUD/Health/SubViewport"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_5ufw0")
@@ -285,16 +282,13 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/LeftPanel/SubViewport"]
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
 theme = ExtResource("3_5ufw0")
 texture = SubResource("GradientTexture2D_b21lj")
 expand_mode = 1
@@ -406,16 +400,13 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/RightPanel/SubViewport"]
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
 theme = ExtResource("3_5ufw0")
 texture = SubResource("GradientTexture2D_b21lj")
 expand_mode = 1
