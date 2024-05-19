@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://pe8omgyk55lt"]
+[gd_scene load_steps=2 format=3 uid="uid://pe8omgyk55lt"]
+
+[ext_resource type="FontFile" uid="uid://djiyr36bndnx8" path="res://fonts/Lato/Lato-Bold.ttf" id="1_giros"]
 
 [node name="LobbyMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +9,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 432)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayerList" type="PanelContainer" parent="H"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="S" type="ScrollContainer" parent="H/PlayerList"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Items" type="VBoxContainer" parent="H/PlayerList/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player" type="HBoxContainer" parent="H/PlayerList/S/Items"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="H/PlayerList/S/Items/Player"]
+layout_mode = 2
+text = "PlayerName"
+vertical_alignment = 1
+
+[node name="Host" type="Label" parent="H/PlayerList/S/Items/Player"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_giros")
+text = "H"
+vertical_alignment = 1

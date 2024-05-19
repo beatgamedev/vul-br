@@ -1,5 +1,7 @@
 extends Node
 
+signal connected
+
 func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
@@ -12,6 +14,7 @@ func host(port:int=4444):
 	var error = peer.create_server(port, 32)
 	if error != OK: return error
 	multiplayer.multiplayer_peer = peer
+	_on_connected_ok()
 	print("Hosting on port %s" % port)
 	return OK
 func join(address:String="127.0.0.1", port:int=4444):
@@ -29,6 +32,7 @@ func create_local_player():
 	var local_peer_id = multiplayer.get_unique_id()
 	_player_connected(local_peer_id)
 	local_player = players.get(local_peer_id)
+	local_player.data = {"name":"Player"}
 
 func _player_connected(peer_id:int):
 	var player = LobbyPlayer.new()
@@ -37,10 +41,11 @@ func _player_connected(peer_id:int):
 	player.set_multiplayer_authority(peer_id)
 	players[peer_id] = player
 	add_child(player)
-@rpc("authority", "call_local", "reliable")
-func _player_added(peer_id:int, data:Dictionary):
-	if peer_id == local_player.peer_id: return
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_remote", "reliable")
+func _player_added(data:Dictionary):
+	var peer_id = multiplayer.get_remote_sender_id()
+	var player = players.get(peer_id)
+	player.data = data
 func _player_removed(peer_id:int):
 	var player = players.get(peer_id)
 	if player: player.queue_free()
@@ -48,7 +53,9 @@ func _player_removed(peer_id:int):
 
 func _on_connected_ok():
 	print("Connected")
-	pass
+	create_local_player()
+	print("Created local player")
+	connected.emit()
 func _on_connected_fail():
 	print("Connection failed")
 	_cleanup()
@@ -56,7 +63,9 @@ func _on_disconnected():
 	print("Disconnected")
 	_cleanup()
 func _on_peer_connected(peer_id:int):
+	print("Peer %s connected" % peer_id)
 	_player_connected(peer_id)
+	_player_added.rpc_id(peer_id, local_player.data)
 func _on_peer_disconnected(peer_id:int):
 	_player_removed(peer_id)
 

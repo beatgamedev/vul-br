@@ -5,8 +5,8 @@ class_name GamePlayer
 @onready var camera_pivot:Vector3 = camera.position
 @onready var cursor:Node3D = $Cursor
 
-var spin:bool = false
-var drift:bool = true
+@onready var spin:bool = !Vulnus.settings.camera_lock
+@onready var drift:bool = true
 
 var pitch:float = 0
 var yaw:float = 0
@@ -30,6 +30,8 @@ func _do_lock():
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+func _exit_tree():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta):
 	var _cursor_position = self.cursor_position
