@@ -24,6 +24,7 @@ config/icon="res://images/vulnus.png"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Globals="*res://scripts/Globals.gd"
 Vulnus="*res://scripts/Vulnus.gd"
+Online="*res://scripts/Online.gd"
 
 [display]
 
