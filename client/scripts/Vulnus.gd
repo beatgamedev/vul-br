@@ -67,6 +67,8 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 	path = path.replace("exec:/", exe_path.get_base_dir())
 	if is_self_contained and path.begins_with("user://"):
 		path = path.replace("user:/", exe_path.get_base_dir())
+	if path.begins_with("res://"):
+		return path
 	return ProjectSettings.globalize_path(path)
 
 # Settings
@@ -108,6 +110,14 @@ func _ready():
 	DiscordRPC.state = "Loading"
 
 	DiscordRPC.refresh()
+
+	var map1 = SspmMap.new()
+	print(map1.load_from_path(find_path("maps folder").path_join("friendly_father.sspm")))
+	map1.load_music()
+	var player = AudioStreamPlayer.new()
+	player.stream = map1.music
+	add_child(player)
+	player.play()
 
 func _process(delta):
 	DiscordRPC.run_callbacks()
