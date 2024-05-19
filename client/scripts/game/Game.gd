@@ -10,6 +10,10 @@ func _ready():
 	map.load_notes()
 	$Notes.notes = map.notes
 
+	score._max_base_score = map.notes.size()
+	for i in map.notes.size():
+		score._max_combo_score += sqrt(clampi(floor((i+1)/10)+1, 1, 8))
+
 	$AudioSyncManager.start.call_deferred(-1)
 
 	$Preload.queue_free.call_deferred()

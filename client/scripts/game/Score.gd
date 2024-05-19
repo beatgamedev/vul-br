@@ -6,9 +6,9 @@ signal combo_changed
 signal health_changed
 
 var _combo_score:int = 0
-var _max_combo_score:int = 120
+var _max_combo_score:int = 0
 var _base_score:int = 0
-var _max_base_score:int = 120
+var _max_base_score:int = 0
 var score:int:
 	get:
 		var combo_portion = float(_combo_score) / float(_max_combo_score)

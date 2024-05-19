@@ -111,11 +111,11 @@ func load_notes():
 			var note = Note.new()
 			note.time = float(file.get_32())/1000
 			if file.get_8() == 1:
-				note.x = file.get_float()
-				note.y = file.get_float()
+				note.x = 2 * (-file.get_float() + 1)
+				note.y = 2 * (-file.get_float() + 1)
 			else:
-				note.x = float(file.get_8())
-				note.y = float(file.get_8())
+				note.x = 2 * (-float(file.get_8()) + 1)
+				note.y = 2 * (-float(file.get_8()) + 1)
 			notes.append(note)
 	elif sspm_version == 2:
 		file.seek(_marker_def_offset)
@@ -149,8 +149,8 @@ func load_notes():
 			if note_data[1] != 7: continue
 			var note = Map.Note.new()
 			note.time = float(note_data[0])/1000
-			note.x = note_data[2].x
-			note.y = note_data[2].y
+			note.x = 2 * (-note_data[2].x + 1)
+			note.y = 2 * (-note_data[2].y + 1)
 			notes.append(note)
 func _read_data_type(file:FileAccess,skip_type:bool=false,skip_array_type:bool=false,type:int=0,array_type:int=0):
 	if !skip_type:

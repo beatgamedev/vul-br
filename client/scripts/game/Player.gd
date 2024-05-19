@@ -1,4 +1,5 @@
 extends Node
+class_name GamePlayer
 
 @onready var camera:Camera3D = $Camera
 @onready var camera_pivot:Vector3 = camera.position

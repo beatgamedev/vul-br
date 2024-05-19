@@ -7,6 +7,8 @@ extends Node
 @onready var accuracy = $SubViewport/Control/V/Accuracy
 
 func _ready():
+	score.text = "0"
+	accuracy.text = "100.00%"
 	game.score.score_changed.connect(update_score)
 	game.score.combo_changed.connect(update_accuracy)
 

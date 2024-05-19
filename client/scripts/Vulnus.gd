@@ -73,6 +73,8 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 
 # Settings
 var settings:Dictionary = {
+	"approach_distance": 30,
+	"approach_time": 1,
 	"map_folders": []
 }
 func load_settings():

@@ -508,13 +508,14 @@ text = "MISSES"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Notes" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("game", "sync_manager")]
+[node name="Notes" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("game", "sync_manager", "player")]
 material_override = ExtResource("4_gsxrx")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_fwhkp")
 script = ExtResource("17_mp14u")
 game = NodePath("..")
 sync_manager = NodePath("../AudioSyncManager")
+player = NodePath("../Player")
 
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_hyrnf")

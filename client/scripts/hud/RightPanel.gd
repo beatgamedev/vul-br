@@ -8,6 +8,8 @@ extends Node
 @onready var misses = $SubViewport/Control/V/Misses
 
 func _ready():
+	update_multiplier()
+	update_combo()
 	game.score.multiplier_changed.connect(update_multiplier)
 	game.score.combo_changed.connect(update_combo)
 
