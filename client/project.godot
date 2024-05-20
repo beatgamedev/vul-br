@@ -54,6 +54,10 @@ request_skip={
 ]
 }
 
+[network]
+
+limits/tcp/connect_timeout_seconds=20
+
 [physics]
 
 common/physics_ticks_per_second=128

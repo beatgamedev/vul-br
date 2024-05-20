@@ -184,7 +184,7 @@ msaa_2d = 1
 size = Vector2i(600, 100)
 
 [node name="Control" type="VBoxContainer" parent="HUD/Timer/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -245,6 +245,7 @@ size = Vector2i(600, 100)
 
 [node name="Control" type="Control" parent="HUD/Health/SubViewport"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -286,7 +287,7 @@ msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/LeftPanel/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("3_5ufw0")
@@ -404,7 +405,7 @@ msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/RightPanel/SubViewport"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("3_5ufw0")
