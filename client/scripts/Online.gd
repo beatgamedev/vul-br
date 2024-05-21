@@ -15,6 +15,9 @@ func _ready():
 	connected.connect(func(): get_tree().change_scene_to_file("res://scenes/LobbyMenu.tscn"))
 
 func host(port:int=4444):
+	var upnp = UPNP.new()
+	upnp.discover()
+	upnp.add_port_mapping(port)
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 32)
 	if error != OK: return error
