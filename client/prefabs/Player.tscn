@@ -12,3 +12,5 @@ script = ExtResource("1_5swpi")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_aexj6")
+
+[connection signal="synchronized" from="MultiplayerSynchronizer" to="." method="_on_sync"]
