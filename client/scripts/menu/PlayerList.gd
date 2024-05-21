@@ -19,9 +19,9 @@ func _create_item(player:LobbyPlayer):
 	item.set_meta("player", player)
 	items[peer_id] = player
 	item_container.add_child(item)
+	if peer_id == 1: item_container.move_child(item, 0)
 	player.updated.connect(_update_item.bind(item))
 	_update_item(item)
-	_sort_items.call_deferred()
 	return item
 func _create_items():
 	var lobby_players = Online.players
@@ -35,5 +35,3 @@ func _remove_item(peer_id:int):
 	if !items.has(peer_id): return
 	items.get(peer_id).queue_free()
 	items.erase(peer_id)
-func _sort_items():
-	pass
