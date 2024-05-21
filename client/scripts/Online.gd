@@ -30,6 +30,13 @@ func join(address:String="127.0.0.1", port:int=4444):
 	print("Connecting")
 	return OK
 
+var lobby:Lobby
+func create_lobby():
+	lobby = preload("res://prefabs/Lobby.tscn").instantiate()
+	lobby.set_multiplayer_authority(1)
+	lobby.name = "Lobby"
+	add_child(lobby)
+
 var local_player:LobbyPlayer
 var players:Dictionary = {}
 
@@ -56,11 +63,14 @@ func _player_removed(peer_id:int):
 func _cleanup():
 	multiplayer.multiplayer_peer = null
 	players = {}
-	for player in get_children():
-		player.queue_free()
+	lobby = null
+	for node in get_children():
+		node.queue_free()
 
 func _on_connected_ok():
 	print("Connected")
+	create_lobby()
+	print("Created lobby")
 	create_local_player()
 	print("Created local player")
 	connected.emit()

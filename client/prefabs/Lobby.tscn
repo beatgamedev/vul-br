@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhe35e5e0lt48"]
+
+[ext_resource type="Script" path="res://scripts/online/Lobby.gd" id="1_ug6n5"]
+
+[node name="Lobby" type="Node"]
+script = ExtResource("1_ug6n5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
