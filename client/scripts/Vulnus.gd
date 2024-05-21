@@ -48,6 +48,9 @@ func parse_cl_args() -> Dictionary: # Parses command line arguments
 
 	if key != null: parsed_args[key] = value if value != null else true
 
+	for k in parsed_args.keys():
+		print("%s=%s" % [k, parsed_args[k]])
+
 	return parsed_args
 
 # Path Conversion
@@ -103,15 +106,24 @@ func save_settings():
 	file.store_string(JSON.stringify(settings, " ", false, false))
 	file.close()
 
+# Maps
+var maps:Array[Map] = []
+func load_maps():
+	var map_loader = MapLoader.new()
+	map_loader.add_search_folder(find_path("maps folder"))
+	maps = map_loader.load_maps_blocking()
+
 func _ready():
 	load_settings()
+	
 	DiscordRPC.app_id = 1239676558587723819
 	DiscordRPC.large_image = "icon"
-	#DiscordRPC.large_image_text = "Vulnus Brasil"
+	DiscordRPC.large_image_text = "Vulnus Brasil"
 	DiscordRPC.details = "Getting ready to ball out"
 	DiscordRPC.state = "Loading"
-
 	DiscordRPC.refresh()
+	
+	load_maps()
 
 func _process(delta):
 	DiscordRPC.run_callbacks()
