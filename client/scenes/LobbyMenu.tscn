@@ -32,7 +32,8 @@ func _pressed():
 		disabled = true
 		return
 	if Online.local_player.selected_map_id == null: return
-	Online.lobby.start_game.rpc(Online.local_player.selected_map_id)"
+	Online.lobby.start_game.rpc(Online.local_player.selected_map_id)
+"
 
 [node name="LobbyMenu" type="Control"]
 layout_mode = 3
