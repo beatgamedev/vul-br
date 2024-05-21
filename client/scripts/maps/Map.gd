@@ -6,6 +6,13 @@ var broken:bool = false
 var id:String
 var title:String
 var mappers:Array[String] = []
+var mappers_string:String:
+	get:
+		var result = ""
+		for i in mappers.size():
+			if i != 0: result += ", "
+			result += mappers[i]
+		return result
 var difficulty:String
 func load_metadata(): pass
 

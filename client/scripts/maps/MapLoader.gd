@@ -12,16 +12,16 @@ func add_search_folder(path:String, recursive:bool=false):
 		for directory in DirAccess.get_directories_at(path):
 			add_search_folder(directory, true)
 func get_all_files() -> Array[String]:
-	var files = []
+	var files:Array[String] = []
 	for folder in folders:
 		if !DirAccess.dir_exists_absolute(folder): continue
 		for file in DirAccess.get_files_at(folder):
-			var full_file = folder.path_join(file) if file != file.get_file() else file
+			var full_file = folder.path_join(file) if file == file.get_file() else file
 			if !files.has(full_file): files.append(full_file)
 	return files
 
 func _load_maps(files:Array[String] = get_all_files()):
-	var maps = []
+	var maps:Array[Map] = []
 	
 	var current = 0
 	var total = files.size()
@@ -31,9 +31,11 @@ func _load_maps(files:Array[String] = get_all_files()):
 		loading_maps.emit(current, total, errors)
 		current += 1
 		var map = SspmMap.new()
-		if map.load_from_path(file) != OK:
-			print("Error loading map %s" % file.get_file())
+		var error = map.load_from_path(file)
+		if error != OK:
+			print("Error %s loading map %s" % [error, file])
 			errors += 1
+		else: maps.append(map)
 	loading_maps.emit(current, total, errors)
 	
 	loaded_maps.emit(maps)

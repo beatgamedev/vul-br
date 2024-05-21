@@ -108,10 +108,12 @@ func save_settings():
 
 # Maps
 var maps:Array[Map] = []
+var maps_by_id:Dictionary = {}
 func load_maps():
 	var map_loader = MapLoader.new()
 	map_loader.add_search_folder(find_path("maps folder"))
 	maps = map_loader.load_maps_blocking()
+	for map in maps: maps_by_id[map.id] = map
 
 func _ready():
 	load_settings()
@@ -124,6 +126,7 @@ func _ready():
 	DiscordRPC.refresh()
 	
 	load_maps()
+	print("Loaded %s maps" % maps.size())
 
 func _process(delta):
 	DiscordRPC.run_callbacks()

@@ -28,7 +28,7 @@ func _create_items():
 	for player in lobby_players.values():
 		_create_item(player)
 func _update_item(item):
-	var player = item.get_meta("player")
+	var player:LobbyPlayer = item.get_meta("player")
 	item.get_node("H/Info/PlayerName").text = player.display_name
 	item.get_node("H/Info/Host").visible = player.peer_id == 1
 func _remove_item(peer_id:int):

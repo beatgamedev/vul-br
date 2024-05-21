@@ -9,4 +9,9 @@ var local_player:bool:
 
 @export var display_name:String = "Player"
 
+@export var selected_map_id:String
+@export var selected_map_title:String
+@export var selected_map_mappers:String
+@export var selected_map_difficulty:String
+
 func _on_sync(): updated.emit()
