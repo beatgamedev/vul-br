@@ -1,29 +1,32 @@
 extends Control
 
-@export var item_container:Control
-@export var template_item:Control
+@onready var item_container = $S/M/V
+@onready var template_item = $S/M/V/Player
 
 var items:Dictionary = {}
 
 func _ready():
 	item_container.remove_child(template_item)
 	
-	Online.player_added.connect(func(peer_id,_player): _create_item(peer_id))
-	Online.player_removed.connect(func(peer_id,_player): _remove_item(peer_id))
+	Online.player_added.connect(func(peer_id,player): _create_item(player))
+	Online.player_removed.connect(func(peer_id,player): _remove_item(peer_id))
 	_create_items()
 
-func _create_item(peer_id:int):
+func _create_item(player:LobbyPlayer):
+	var peer_id = player.peer_id
 	var item = template_item.duplicate()
-	item.name = peer_id
+	item.name = str(peer_id)
+	item.set_meta("player", player)
+	items[peer_id] = player
 	item_container.add_child(item)
+	player.updated.connect(_update_item.bind(item))
+	_update_item(item)
+	_sort_items.call_deferred()
 	return item
 func _create_items():
 	var lobby_players = Online.players
-	for peer_id in lobby_players.keys():
-		var item = _create_item(peer_id)
-		item.set_meta("player", lobby_players.get(peer_id))
-		_update_item(item)
-		lobby_players.get(peer_id).updated.connect(_update_item.bind(item))
+	for player in lobby_players.values():
+		_create_item(player)
 func _update_item(item):
 	var player = item.get_meta("player")
 	item.get_node("H/Info/PlayerName").text = player.display_name
@@ -32,3 +35,5 @@ func _remove_item(peer_id:int):
 	if !items.has(peer_id): return
 	items.get(peer_id).queue_free()
 	items.erase(peer_id)
+func _sort_items():
+	pass
