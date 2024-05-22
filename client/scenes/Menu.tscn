@@ -328,6 +328,10 @@ text = "Direct Connection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DisplayName" type="LineEdit" parent="Lobbies/Private/V/Direct/V"]
+layout_mode = 2
+placeholder_text = "Display Name"
+
 [node name="Server" type="HBoxContainer" parent="Lobbies/Private/V/Direct/V"]
 layout_mode = 2
 

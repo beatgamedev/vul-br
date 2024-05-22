@@ -12,6 +12,7 @@ func _ready():
 
 func join():
 	_set_inputs(false)
+	Online.local_player_name = $V/DisplayName.text
 	var address:String = join_address.text
 	if address.is_empty(): address = join_address.placeholder_text
 	var port:String = join_port.text
@@ -19,6 +20,7 @@ func join():
 	if Online.join(address, int(port)) != OK: _set_inputs(true)
 func host():
 	_set_inputs(false)
+	Online.local_player_name = $V/DisplayName.text
 	var port:String = host_port.text
 	if port.is_empty(): port = host_port.placeholder_text
 	if Online.host(int(port)) != OK: _set_inputs(true)

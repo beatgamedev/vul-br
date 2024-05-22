@@ -12,9 +12,17 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:selected_map_title")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:selected_map_mappers")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:selected_map_difficulty")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="Player" type="Node"]
 script = ExtResource("1_5swpi")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_aexj6")
+
+[connection signal="synchronized" from="MultiplayerSynchronizer" to="." method="_on_sync"]

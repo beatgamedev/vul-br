@@ -8,6 +8,6 @@ func _on_map_selected(map:Map):
 	Online.local_player.updated.emit()
 	$V/NoSelection.visible = false
 	$V/SelectedMap/Title.text = map.title
-	$V/SelectedMap/Mappers.text = map.mappers_string
-	$V/SelectedMap/Difficulty.text = map.difficulty
+	$V/SelectedMap/H/Mappers.text = map.mappers_string
+	$V/SelectedMap/H/Difficulty.text = map.difficulty
 	$V/SelectedMap.visible = true

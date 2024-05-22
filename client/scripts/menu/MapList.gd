@@ -7,7 +7,7 @@ signal map_selected(map:Map)
 
 func _ready():
 	button_container.remove_child(template_button)
-	
+
 	_create_buttons()
 
 var selected_map:Map
@@ -35,5 +35,5 @@ func _create_buttons():
 func _update_button(button):
 	var map:Map = button.get_meta("map")
 	button.get_node("Title").text = map.title
-	button.get_node("Mappers").text = map.mappers_string
-	button.get_node("Difficulty").text = map.difficulty
+	button.get_node("H/Mappers").text = map.mappers_string
+	button.get_node("H/Difficulty").text = map.difficulty
