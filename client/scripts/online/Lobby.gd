@@ -1,6 +1,8 @@
 extends Node
 class_name Lobby
 
+@export var in_match:bool = false
+
 func _process(delta):
 	if is_multiplayer_authority(): _server_process(delta)
 	_client_process(delta)

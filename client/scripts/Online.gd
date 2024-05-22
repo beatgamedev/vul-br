@@ -37,6 +37,7 @@ func create_lobby():
 	lobby.name = "Lobby"
 	add_child(lobby)
 
+var local_player_name:String = "Player"
 var local_player:LobbyPlayer
 var players:Dictionary = {}
 
@@ -44,14 +45,14 @@ func create_local_player():
 	var local_peer_id = multiplayer.get_unique_id()
 	_player_connected(local_peer_id)
 	local_player = players.get(local_peer_id)
-	local_player.display_name = "PlayerName"
+	local_player.display_name = local_player_name
 
 func _player_connected(peer_id:int):
 	var player = preload("res://prefabs/Player.tscn").instantiate()
 	player.name = str(peer_id)
 	player.peer_id = peer_id
-	player.set_multiplayer_authority(peer_id)
 	players[peer_id] = player
+	player.set_multiplayer_authority(peer_id)
 	add_child(player)
 	player_added.emit(peer_id, player)
 func _player_removed(peer_id:int):

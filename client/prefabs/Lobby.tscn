@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhe35e5e0lt48"]
+[gd_scene load_steps=3 format=3 uid="uid://dhe35e5e0lt48"]
 
 [ext_resource type="Script" path="res://scripts/online/Lobby.gd" id="1_ug6n5"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8bat3"]
+properties/0/path = NodePath(".:in_match")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Lobby" type="Node"]
 script = ExtResource("1_ug6n5")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8bat3")
