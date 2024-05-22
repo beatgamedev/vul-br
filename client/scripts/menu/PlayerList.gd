@@ -7,7 +7,7 @@ var items:Dictionary = {}
 
 func _ready():
 	item_container.remove_child(template_item)
-	
+
 	Online.player_added.connect(func(peer_id,player): _create_item(player))
 	Online.player_removed.connect(func(peer_id,player): _remove_item(peer_id))
 	_create_items()
@@ -32,7 +32,6 @@ func _update_item(item):
 	item.get_node("H/Info/PlayerName").text = player.display_name
 	item.get_node("H/Info/Host").visible = player.peer_id == 1
 	if player.selected_map_id != null:
-		print(player.selected_map_id)
 		item.get_node("H/Selection/Map").visible = true
 		item.get_node("H/Selection/Map").text = player.selected_map_title
 		item.get_node("H/Selection/Map/Label").text = player.selected_map_title
