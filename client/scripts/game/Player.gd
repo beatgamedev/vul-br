@@ -48,7 +48,10 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_delta = event.relative
-		var scale = float(get_window().size.y) / float(get_window().content_scale_size.y)
+		var scale = min(
+			float(get_window().size.x) / float(get_window().content_scale_size.x),
+			float(get_window().size.y) / float(get_window().content_scale_size.y),
+			)
 		mouse_delta *= scale
 		if spin:
 			pitch = wrap(pitch - mouse_delta.y / 10, -180, 180)
