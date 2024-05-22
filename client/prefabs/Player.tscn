@@ -5,17 +5,17 @@
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aexj6"]
 properties/0/path = NodePath(".:display_name")
 properties/0/spawn = true
-properties/0/replication_mode = 2
+properties/0/replication_mode = 1
 properties/1/path = NodePath(".:selected_map_id")
 properties/1/spawn = true
 properties/1/replication_mode = 2
-properties/2/path = NodePath(".:selected_map_title")
+properties/2/path = NodePath("Player:selected_map_title")
 properties/2/spawn = true
 properties/2/replication_mode = 2
-properties/3/path = NodePath(".:selected_map_mappers")
+properties/3/path = NodePath("Player:selected_map_mappers")
 properties/3/spawn = true
 properties/3/replication_mode = 2
-properties/4/path = NodePath(".:selected_map_difficulty")
+properties/4/path = NodePath("Player:selected_map_difficulty")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
