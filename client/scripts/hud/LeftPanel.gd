@@ -31,7 +31,7 @@ var _accuracy_tween:Tween
 func update_accuracy():
 	if _accuracy_tween != null: _accuracy_tween.kill()
 	_accuracy = _target_accuracy
-	_target_accuracy = float(game.score.hits) / float(game.score.total)
+	_target_accuracy = game.score.accuracy
 	_accuracy_tween = (create_tween()
 	.set_ease(Tween.EASE_OUT)
 	.set_trans(Tween.TRANS_EXPO))

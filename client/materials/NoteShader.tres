@@ -2,6 +2,7 @@
 
 [resource]
 transparency = 1
+cull_mode = 2
 depth_draw_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true

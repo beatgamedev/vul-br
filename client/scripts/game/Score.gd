@@ -14,8 +14,8 @@ var score:int:
 		var combo_portion = float(_combo_score) / float(_max_combo_score)
 		var accuracy_portion = float(_base_score) / float(_max_base_score)
 		return (
-			(500000 * combo_portion) +
-			(500000 * pow(accuracy_portion, 5))
+			(500000 * self.accuracy * combo_portion) +
+			(500000 * self.accuracy * pow(accuracy_portion, 5))
 		)
 
 var multiplier:int = 1
@@ -28,6 +28,8 @@ var hits:int = 0
 var misses:int = 0
 var total:int:
 	get: return hits + misses
+var accuracy:float:
+	get: return 1 if hits <= 0 else float(hits) / float(self.total)
 
 var health:int = 40
 var failed:bool = false
@@ -68,3 +70,4 @@ func add_miss():
 	multiplier = max(1, multiplier - 1)
 	sub_multiplier = 0
 	multiplier_changed.emit()
+	score_changed.emit()
