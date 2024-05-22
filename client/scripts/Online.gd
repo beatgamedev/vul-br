@@ -12,8 +12,6 @@ func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
-	connected.connect(func(): get_tree().change_scene_to_file("res://scenes/LobbyMenu.tscn"))
-
 func host(port:int=4444):
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 32)
@@ -30,6 +28,8 @@ func join(address:String="127.0.0.1", port:int=4444):
 	print("Connecting")
 	return OK
 
+var in_lobby:bool:
+	get: return lobby != null
 var lobby:Lobby
 func create_lobby():
 	lobby = preload("res://prefabs/Lobby.tscn").instantiate()
@@ -46,6 +46,7 @@ func create_local_player():
 	_player_connected(local_peer_id)
 	local_player = players.get(local_peer_id)
 	local_player.display_name = local_player_name
+	local_player.updated.emit()
 
 func _player_connected(peer_id:int):
 	var player = preload("res://prefabs/Player.tscn").instantiate()

@@ -2,6 +2,7 @@ extends Node
 class_name LobbyPlayer
 
 signal updated
+signal map_selected
 
 var peer_id:int = 0
 var local_player:bool:
@@ -9,9 +10,16 @@ var local_player:bool:
 
 @export var display_name:String = "Player"
 
-@export var selected_map_id:String
-@export var selected_map_title:String
-@export var selected_map_mappers:String
-@export var selected_map_difficulty:String
+@rpc("authority", "call_local", "reliable")
+func select_map(id:String, title:String, mappers:String, difficulty:String):
+	selected_map_id = id
+	selected_map_title = title
+	selected_map_mappers = mappers
+	selected_map_difficulty = difficulty
+	map_selected.emit(id)
+var selected_map_id:String
+var selected_map_title:String
+var selected_map_mappers:String
+var selected_map_difficulty:String
 
 func _on_sync(): updated.emit()

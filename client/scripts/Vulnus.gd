@@ -117,14 +117,14 @@ func load_maps():
 
 func _ready():
 	load_settings()
-	
+
 	DiscordRPC.app_id = 1239676558587723819
 	DiscordRPC.large_image = "icon"
-	DiscordRPC.large_image_text = "Vulnus Brasil"
-	DiscordRPC.details = "Getting ready to ball out"
+	DiscordRPC.large_image_text = "Vulnus Battle Royale"
+	DiscordRPC.details = "Loading"
 	DiscordRPC.state = "Loading"
 	DiscordRPC.refresh()
-	
+
 	load_maps()
 	print("Loaded %s maps" % maps.size())
 

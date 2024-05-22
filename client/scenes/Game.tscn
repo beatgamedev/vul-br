@@ -94,7 +94,7 @@ texture_repeat = false
 
 [sub_resource type="Gradient" id="Gradient_6t2ia"]
 interpolation_mode = 2
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.588235)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b21lj"]
 gradient = SubResource("Gradient_6t2ia")
@@ -322,6 +322,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Placement" type="Label" parent="HUD/LeftPanel/SubViewport/Control/V"]
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 offset_top = 198.0
@@ -504,6 +505,10 @@ script = ExtResource("17_mp14u")
 game = NodePath("..")
 sync_manager = NodePath("../AudioSyncManager")
 player = NodePath("../Player")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Notes"]
+
+[node name="MissSound" type="AudioStreamPlayer" parent="Notes"]
 
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_hyrnf")

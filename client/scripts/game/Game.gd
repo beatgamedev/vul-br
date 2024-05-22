@@ -15,6 +15,20 @@ func _ready():
 		score._max_combo_score += sqrt(clampi(floor((i+1)/10)+1, 1, 8))
 
 	$AudioSyncManager.start.call_deferred(-1)
-	$AudioSyncManager.finished.connect(get_tree().change_scene_to_file.bind("res://scenes/LobbyMenu.tscn"))
+	$AudioSyncManager.finished.connect(get_tree().change_scene_to_file.bind("res://scenes/Menu.tscn"))
 
 	$Preload.queue_free.call_deferred()
+
+	DiscordRPC.details = "%s [%s]" % [map.title, map.difficulty]
+	var player_count = Online.players.size() - 1
+	var playing_message = "Playing with %s others" % player_count
+	if player_count == 0: playing_message = "Playing alone"
+	elif player_count == 1: playing_message = "Playing 1v1"
+	DiscordRPC.state = playing_message
+	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system()) + 1
+	DiscordRPC.end_timestamp = DiscordRPC.start_timestamp + int($AudioSyncManager.length)
+	DiscordRPC.refresh()
+
+func _exit_tree():
+	DiscordRPC.start_timestamp = 0
+	DiscordRPC.end_timestamp = 0
