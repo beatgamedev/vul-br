@@ -24,6 +24,7 @@ var notes:Array[Note]
 func load_notes(): pass
 
 class Note:
+	var index:int = 0
 	var time:float = 0
 	var x:float = 0
 	var y:float = 0

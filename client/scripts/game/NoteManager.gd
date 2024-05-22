@@ -11,8 +11,7 @@ var hit_window = 1.75/30
 
 var notes:Array[Map.Note] = []
 var next_note:int = 0
-var ignore_notes:Array[Map.Note] = [] # Notes that we already passed/hit/missed
-var current_notes:Array[Map.Note] = [] # Notes that need to be processed
+var current_notes:Array[Map.Note] = []
 
 func _process(delta):
 	var current_notes_size = current_notes.size()
@@ -25,7 +24,7 @@ func _process(delta):
 		var position = Vector3(note.x, note.y, -distance)
 		var transform = Transform3D.IDENTITY.translated(position)
 		multimesh.set_instance_transform(i, transform)
-		multimesh.set_instance_color(i, Color.WHEAT)
+		multimesh.set_instance_color(i, [Color.WHITE_SMOKE, Color.AQUA][note.index % 2])
 func _physics_process(delta):
 	while next_note < notes.size():
 		var note = notes[next_note]
