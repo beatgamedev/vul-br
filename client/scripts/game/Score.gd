@@ -11,11 +11,11 @@ var _base_score:int = 0
 var _max_base_score:int = 0
 var score:int:
 	get:
-		var combo_portion = float(_combo_score) / float(_max_combo_score)
-		var accuracy_portion = float(_base_score) / float(_max_base_score)
+		var combo_progress = float(_combo_score) / float(_max_combo_score)
+		var accuracy_progress = float(_base_score) / float(_max_base_score)
 		return (
-			(500000 * self.accuracy * combo_portion) +
-			(500000 * self.accuracy * pow(accuracy_portion, 5))
+			(500000 * self.accuracy * combo_progress) +
+			(500000 * pow(self.accuracy, 5) * accuracy_progress)
 		)
 
 var multiplier:int = 1
