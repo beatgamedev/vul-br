@@ -10,9 +10,9 @@ extends Node
 
 func _ready():
 	song_label.text = "%s [%s]" % [game.map.title, game.map.difficulty]
-	end_label.text = Globals.seconds_to_timestamp(sync_manager.length)
 
 func _process(delta):
 	start_label.text = Globals.seconds_to_timestamp(sync_manager.real_time)
+	end_label.text = Globals.seconds_to_timestamp(sync_manager.length)
 	progress_bar.max_value = sync_manager.length
 	progress_bar.value = sync_manager.real_time
