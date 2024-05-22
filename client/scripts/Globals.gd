@@ -15,7 +15,10 @@ func load_audio(file:PackedByteArray) -> AudioStream:
 		return AudioStreamOggVorbis.load_from_buffer(file)
 	elif (
 		first3 == PackedByteArray([0x49, 0x44, 0x33]) or
-		first2 == PackedByteArray([])
+		first2 == PackedByteArray([0xff, 0xf2]) or
+		first2 == PackedByteArray([0xff, 0xf3]) or
+		first2 == PackedByteArray([0xff, 0xfa]) or
+		first2 == PackedByteArray([0xff, 0xfb])
 	):
 		var stream = AudioStreamMP3.new()
 		stream.data = file
