@@ -180,7 +180,6 @@ sync_manager = NodePath("../../AudioSyncManager")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
-msaa_2d = 1
 size = Vector2i(600, 100)
 
 [node name="Control" type="VBoxContainer" parent="HUD/Timer/SubViewport"]
@@ -240,7 +239,6 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
-msaa_2d = 1
 size = Vector2i(600, 100)
 
 [node name="Control" type="Control" parent="HUD/Health/SubViewport"]
@@ -283,7 +281,6 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
-msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/LeftPanel/SubViewport"]
@@ -401,7 +398,6 @@ game = NodePath("../..")
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
-msaa_2d = 1
 size = Vector2i(200, 500)
 
 [node name="Control" type="TextureRect" parent="HUD/RightPanel/SubViewport"]

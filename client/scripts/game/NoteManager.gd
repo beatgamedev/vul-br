@@ -20,11 +20,16 @@ func _process(delta):
 	for i in current_notes_size:
 		var note = current_notes[i]
 		var time_difference = note.time - sync_manager.current_time
-		var distance = (time_difference / approach_time) * approach_distance
+		var progress = time_difference / approach_time
+		var inverse_progress = 1 - progress
+		var distance = progress * approach_distance
 		var position = Vector3(note.x, note.y, -distance)
 		var transform = Transform3D.IDENTITY.translated(position)
 		multimesh.set_instance_transform(i, transform)
-		multimesh.set_instance_color(i, [Color.WHITE_SMOKE, Color.AQUA][note.index % 2])
+		var color:Color = [Color.WHITE_SMOKE, Color.AQUA][note.index % 2]
+		var fade_in = inverse_progress / 0.5
+		color.a = clamp(fade_in, 0, 1)
+		multimesh.set_instance_color(i, color)
 func _physics_process(delta):
 	while next_note < notes.size():
 		var note = notes[next_note]
