@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="client"
+config/name="Vulnus: Battle Royale"
 config/version="0.1.0"
 run/main_scene="res://scenes/Menu.tscn"
 config/use_custom_user_dir=true

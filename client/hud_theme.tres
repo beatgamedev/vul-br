@@ -1,8 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dut6qr4yh7d1x"]
-
-[ext_resource type="FontFile" uid="uid://bmk2mflfcwe33" path="res://fonts/Lato/Lato-Regular.ttf" id="1_uvtat"]
-[ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://fonts/NotoSansJP-Medium.otf" id="2_ou4hy"]
-[ext_resource type="FontFile" uid="uid://c25g4ymy366qk" path="res://fonts/NotoColorEmoji.ttf" id="3_ytoy1"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dut6qr4yh7d1x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tpnr"]
 bg_color = Color(0.156863, 0.156863, 0.156863, 1)
@@ -97,8 +93,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="FontVariation" id="FontVariation_4q6jy"]
-fallbacks = Array[Font]([ExtResource("2_ou4hy"), ExtResource("3_ytoy1")])
-base_font = ExtResource("1_uvtat")
+fallbacks = Array[Font]([null, null])
 
 [resource]
 default_font = SubResource("FontVariation_4q6jy")

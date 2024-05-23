@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt8i2sicw1ngu"]
+
+[ext_resource type="AudioStream" uid="uid://cfnmtlyv3ouoq" path="res://sounds/menu.mp3" id="1_qv2t5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0oijn"]
+line_spacing = 2.0
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.392157)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Fallback" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is not the game!
+
+If you're seeing this screen, it means something is really wrong!
+Please restart Vulnus. If the error persists, ask for help in the Discord server."
+label_settings = SubResource("LabelSettings_0oijn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_qv2t5")
+autoplay = true
