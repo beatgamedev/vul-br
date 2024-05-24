@@ -6,7 +6,8 @@ class_name GamePlayer
 @onready var cursor:Node3D = $Cursor
 
 @onready var spin:bool = !Vulnus.settings.camera_lock
-@onready var drift:bool = true
+@onready var drift:bool = Vulnus.settings.drift
+@onready var sensitivity:float = Vulnus.settings.get("sensitivity")
 
 var pitch:float = 0
 var yaw:float = 0
@@ -53,9 +54,9 @@ func _input(event):
 		else:
 			mouse_delta *= float(get_window().size.x) / float(get_window().content_scale_size.x)
 		if spin:
-			pitch = wrap(pitch - mouse_delta.y / 10, -180, 180)
-			if abs(pitch) < 90: yaw = wrap(yaw - mouse_delta.x / 10, -180, 180)
-			else: yaw = wrap(yaw + mouse_delta.x / 10, -180, 180)
+			pitch = wrap(pitch - (mouse_delta.y * sensitivity) / 10, -180, 180)
+			if abs(pitch) < 90: yaw = wrap(yaw - (mouse_delta.x * sensitivity) / 10, -180, 180)
+			else: yaw = wrap(yaw + (mouse_delta.x * sensitivity) / 10, -180, 180)
 		else:
-			real_cursor_position += mouse_delta * Vector2(1, -1) / 100
+			real_cursor_position += (mouse_delta * sensitivity) * Vector2(1, -1) / 100
 			if drift: real_cursor_position = self.cursor_position

@@ -78,7 +78,9 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 var settings:Dictionary = {
 	"approach_distance": 30,
 	"approach_time": 1,
-	"camera_lock": true
+	"camera_lock": true,
+	"sensitivity": 1,
+	"drift": false
 }
 func load_settings():
 	var settings_path = find_path("settings file")
