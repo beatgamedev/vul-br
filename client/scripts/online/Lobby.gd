@@ -14,10 +14,8 @@ func _client_process(delta):
 
 @rpc("authority", "call_local", "reliable")
 func start_game(map_id:String):
-	var map = Vulnus.maps_by_id.get(map_id)
-	if map == null:
-		push_error("Map is missing")
+	var game = Vulnus.load_game(map_id)
+	if game == null:
+		push_error("Map doesn't exist")
 		return
-	var game = preload("res://scenes/Game.tscn").instantiate()
-	game.map = map
 	Globals.change_scene(game)

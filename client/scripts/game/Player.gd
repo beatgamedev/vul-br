@@ -6,7 +6,7 @@ class_name GamePlayer
 @onready var absolute_camera:Camera3D = $AbsCamera
 @onready var cursor:Node3D = $Cursor
 
-@onready var absolute:bool = Vulnus.settings.absolute
+@onready var absolute:bool = Vulnus.settings.absolute_mode
 @onready var spin:bool = !Vulnus.settings.camera_lock
 @onready var drift:bool = Vulnus.settings.drift
 @onready var sensitivity:float = Vulnus.settings.sensitivity

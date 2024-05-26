@@ -117,6 +117,12 @@ func load_maps():
 	map_loader.add_search_folder(find_path("maps folder"))
 	maps = map_loader.load_maps_blocking()
 	for map in maps: maps_by_id[map.id] = map
+func load_game(map_id:String):
+	var map = Vulnus.maps_by_id.get(map_id)
+	if map == null: return
+	var game = preload("res://scenes/Game.tscn").instantiate()
+	game.map = map
+	return game
 
 func _ready():
 	load_settings()
