@@ -3,11 +3,13 @@ class_name GamePlayer
 
 @onready var camera:Camera3D = $Camera
 @onready var camera_pivot:Vector3 = camera.position
+@onready var absolute_camera:Camera3D = $AbsCamera
 @onready var cursor:Node3D = $Cursor
 
+@onready var absolute:bool = Vulnus.settings.absolute
 @onready var spin:bool = !Vulnus.settings.camera_lock
 @onready var drift:bool = Vulnus.settings.drift
-@onready var sensitivity:float = Vulnus.settings.get("sensitivity")
+@onready var sensitivity:float = Vulnus.settings.sensitivity
 
 var pitch:float = 0
 var yaw:float = 0
@@ -30,7 +32,8 @@ func _do_lock():
 	pass
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.warp_mouse(get_viewport().size / 2)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if !absolute else Input.MOUSE_MODE_CONFINED_HIDDEN
 	Input.use_accumulated_input = false
 func _exit_tree():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -43,11 +46,19 @@ func _process(delta):
 	(camera.basis.z / 2))
 	if spin: _do_spin()
 	else: _do_lock()
-	_cursor_position = self.cursor_position
+	_cursor_position = self.real_cursor_position
 	cursor.position = Vector3(_cursor_position.x, _cursor_position.y, 0)
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		if absolute:
+			var mouse_position = event.position
+			var cursor_position_3d = absolute_camera.project_position(mouse_position, 7.5)
+			real_cursor_position = Vector2(
+				cursor_position_3d.x,
+				cursor_position_3d.y
+			)
+			return
 		var mouse_delta = event.relative
 		if Vector2(get_window().size).aspect() >= Vector2(get_window().content_scale_size).aspect():
 			mouse_delta *= float(get_window().size.y) / float(get_window().content_scale_size.y)

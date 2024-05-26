@@ -78,6 +78,7 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 var settings:Dictionary = {
 	"approach_distance": 30,
 	"approach_time": 1,
+	"absolute_mode": false,
 	"camera_lock": true,
 	"sensitivity": 1,
 	"drift": false
