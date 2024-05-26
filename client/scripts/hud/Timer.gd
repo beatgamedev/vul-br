@@ -6,7 +6,7 @@ extends Node
 @onready var song_label = $SubViewport/Control/SongTitle
 @onready var start_label = $SubViewport/Control/Timer/Start
 @onready var end_label = $SubViewport/Control/Timer/End
-@onready var progress_bar = $SubViewport/Control/Progress
+@onready var progress_bar = $SubViewport/Control/Timer/Progress
 
 func _ready():
 	song_label.text = "%s [%s]" % [game.map.title, game.map.difficulty]

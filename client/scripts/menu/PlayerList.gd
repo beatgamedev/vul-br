@@ -31,7 +31,7 @@ func _update_item(item):
 	var player:LobbyPlayer = item.get_meta("player")
 	item.get_node("H/Info/PlayerName").text = player.display_name
 	item.get_node("H/Info/Host").visible = player.peer_id == 1
-	if player.selected_map_id != null:
+	if player.selected_map:
 		item.get_node("H/Selection/Map").visible = true
 		item.get_node("H/Selection/Map").text = player.selected_map_title
 		item.get_node("H/Selection/Map/Label").text = player.selected_map_title
