@@ -7,6 +7,7 @@ extends Control
 @onready var host_button = $V/Host
 
 func _ready():
+	$V/DisplayName.text = DiscordRPC.get_current_user().get("username", "Player") if DiscordRPC.get_is_discord_working() else "Player"
 	connect_button.pressed.connect(join)
 	host_button.pressed.connect(host)
 
