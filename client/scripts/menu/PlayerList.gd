@@ -21,6 +21,7 @@ func _create_item(player:LobbyPlayer):
 	item_container.add_child(item)
 	if peer_id == 1: item_container.move_child(item, 0)
 	player.updated.connect(_update_item.bind(item))
+	player.map_selected.connect(_update_map.bind(item))
 	_update_item(item)
 	return item
 func _create_items():
@@ -31,6 +32,8 @@ func _update_item(item):
 	var player:LobbyPlayer = item.get_meta("player")
 	item.get_node("H/Info/PlayerName").text = player.display_name
 	item.get_node("H/Info/Host").visible = player.peer_id == 1
+func _update_map(_id, item):
+	var player:LobbyPlayer = item.get_meta("player")
 	if player.selected_map:
 		item.get_node("H/Selection/Map").visible = true
 		item.get_node("H/Selection/Map").text = player.selected_map_title
