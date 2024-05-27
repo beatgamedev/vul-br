@@ -10,6 +10,7 @@ class_name GamePlayer
 @onready var spin:bool = !Vulnus.settings.camera_lock
 @onready var drift:bool = Vulnus.settings.drift
 @onready var sensitivity:float = Vulnus.settings.sensitivity
+@onready var parallax:float = Vulnus.settings.parallax
 
 var pitch:float = 0
 var yaw:float = 0
@@ -42,7 +43,7 @@ func _exit_tree():
 func _process(delta):
 	var _cursor_position = self.cursor_position
 	camera.position = (camera_pivot +
-	(Vector3(_cursor_position.x, _cursor_position.y, 0) / 4) +
+	(Vector3(_cursor_position.x, _cursor_position.y, 0) * parallax / 4) +
 	(camera.basis.z / 2))
 	if spin: _do_spin()
 	else: _do_lock()

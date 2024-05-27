@@ -81,7 +81,8 @@ var settings:Dictionary = {
 	"absolute_mode": false,
 	"camera_lock": true,
 	"sensitivity": 1,
-	"drift": false
+	"drift": true,
+	"parallax": 1
 }
 func load_settings():
 	var settings_path = find_path("settings file")
