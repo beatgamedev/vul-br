@@ -48,7 +48,7 @@ func _process(delta):
 	if !playing: return
 	physics_offset = 0
 	var now = Time.get_ticks_usec()
-	var time = playback_speed * (now - last_time) / 1000000.0
+	var time = playback_speed * min(now - last_time, 100000) / 1000000.0
 	last_time = now
 	real_time += time
 	try_finish()

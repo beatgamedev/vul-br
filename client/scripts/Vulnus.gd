@@ -82,7 +82,8 @@ var settings:Dictionary = {
 	"camera_lock": true,
 	"sensitivity": 1,
 	"drift": true,
-	"parallax": 1
+	"parallax": 1,
+	"map_folders": []
 }
 func load_settings():
 	var settings_path = find_path("settings file")
@@ -109,6 +110,7 @@ func save_settings():
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(settings, " ", false, false))
 	file.close()
+	print("Settings saved")
 
 # Maps
 var maps:Array[Map] = []
@@ -116,6 +118,8 @@ var maps_by_id:Dictionary = {}
 func load_maps():
 	var map_loader = MapLoader.new()
 	map_loader.add_search_folder(find_path("maps folder"))
+	for folder in settings.map_folders:
+		map_loader.add_search_folder(expand_path(folder))
 	maps = map_loader.load_maps_blocking()
 	for map in maps: maps_by_id[map.id] = map
 func load_game(map_id:String):

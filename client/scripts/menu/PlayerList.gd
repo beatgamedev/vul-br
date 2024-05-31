@@ -20,7 +20,6 @@ func _create_item(player:LobbyPlayer):
 	items[peer_id] = player
 	item_container.add_child(item)
 	if peer_id == 1: item_container.move_child(item, 0)
-	player.updated.connect(_update_item.bind(item))
 	player.map_selected.connect(_update_map.bind(item))
 	_update_item(item)
 	return item

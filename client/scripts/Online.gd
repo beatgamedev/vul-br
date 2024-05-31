@@ -45,8 +45,18 @@ func create_local_player():
 	var local_peer_id = multiplayer.get_unique_id()
 	_player_connected(local_peer_id)
 	local_player = players.get(local_peer_id)
+	local_player.awaiting_info = false
 	local_player.display_name = local_player_name
-	local_player.updated.emit()
+	_player_setup.rpc(local_player.name)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _player_setup(display_name:String):
+	var peer_id = multiplayer.get_remote_sender_id()
+	var player = players.get(peer_id)
+	if player == null: push_error("Player doesn't exist? %s" % peer_id)
+	if !player.awaiting_info: push_error("Player already has info? %s" % peer_id)
+	player.awaiting_info = false
+	player.display_name = display_name
 
 func _player_connected(peer_id:int):
 	var player = preload("res://prefabs/Player.tscn").instantiate()
@@ -56,6 +66,7 @@ func _player_connected(peer_id:int):
 	player.set_multiplayer_authority(peer_id)
 	add_child(player)
 	player_added.emit(peer_id, player)
+	if local_player != null: _player_setup.rpc_id(peer_id, local_player.display_name)
 func _player_removed(peer_id:int):
 	var player = players.get(peer_id)
 	if player:

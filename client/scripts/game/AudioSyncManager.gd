@@ -9,7 +9,7 @@ signal started_audio
 	get:
 		return audio_stream
 	set(value):
-		length = value.get_length()
+		if value != null: length = value.get_length()
 		audio_stream = value
 var time_delay:float = 0
 
@@ -29,7 +29,6 @@ func _start_audio():
 	started_audio.emit(current_time)
 
 func _process(delta:float):
-	super._process(delta)
 	var can_play_audio = real_time >= 0 and playback_speed > 0 and real_time <= length
 	var should_play_audio = can_play_audio and playing
 	var is_playing_audio = audio_player.playing
@@ -39,12 +38,16 @@ func _process(delta:float):
 	if is_playing_audio and !should_play_audio:
 		audio_player.stop()
 
-	if should_play_audio and is_playing_audio:
-		var difference = abs(audio_player.get_playback_position() - real_time)
-		if difference >= time_delay * 2: _set_offset()
+	#if should_play_audio and is_playing_audio:
+		#var difference = abs(audio_player.get_playback_position() - real_time)
+		#if difference >= 0.1:
+			#print("Resyncing (%sms)" % round(difference * 1000))
+			#_set_offset()
 
 	if playback_speed > 0:
 		audio_player.pitch_scale = playback_speed
+	
+	super._process(delta)
 
 func seek(from:float=0, real:bool=false):
 	super.seek(from, real)
