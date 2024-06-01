@@ -60,15 +60,15 @@ func _input(event):
 				cursor_position_3d.y
 			)
 			return
-		var mouse_delta = event.relative
+		var mouse_delta = event.relative * sensitivity / 10
 		if Vector2(get_window().size).aspect() >= Vector2(get_window().content_scale_size).aspect():
 			mouse_delta *= float(get_window().size.y) / float(get_window().content_scale_size.y)
 		else:
 			mouse_delta *= float(get_window().size.x) / float(get_window().content_scale_size.x)
 		if spin:
-			pitch = wrap(pitch - (mouse_delta.y * sensitivity) / 10, -180, 180)
-			if abs(pitch) < 90: yaw = wrap(yaw - (mouse_delta.x * sensitivity) / 10, -180, 180)
-			else: yaw = wrap(yaw + (mouse_delta.x * sensitivity) / 10, -180, 180)
+			pitch = wrap(pitch - mouse_delta.y, -180, 180)
+			if abs(pitch) < 90: yaw = wrap(yaw - mouse_delta.x, -180, 180)
+			else: yaw = wrap(yaw + mouse_delta.x, -180, 180)
 		else:
 			real_cursor_position += (mouse_delta * sensitivity) * Vector2(1, -1) / 100
 			if drift: real_cursor_position = self.cursor_position
