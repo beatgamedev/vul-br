@@ -16,8 +16,6 @@ func _order_items():
 
 func _ready():
 	item_container.remove_child(template_item)
-	#Online.player_added.connect(func(peer_id,player): _create_item(player))
-	#Online.player_removed.connect(func(peer_id,player): _remove_item(peer_id))
 	_create_items()
 
 func _create_item(player:LobbyPlayer):
