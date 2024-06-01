@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://c1cjv4i1sp1hv"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://c1cjv4i1sp1hv"]
 
 [ext_resource type="FontFile" uid="uid://bmk2mflfcwe33" path="res://fonts/Lato/Lato-Regular.ttf" id="1_u8fyd"]
 [ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://fonts/NotoSansJP-Medium.otf" id="2_s3bk0"]
@@ -138,6 +138,27 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6hq0"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urtfh"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 0.392157)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_221hl"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwy5c"]
 content_margin_left = 8.0
 content_margin_top = 2.0
@@ -183,6 +204,13 @@ LineEdit/styles/normal = SubResource("StyleBoxFlat_x1w22")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_d1vkg")
 Panel/styles/panel = SubResource("StyleBoxFlat_afb4b")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_lfblq")
+TabContainer/constants/side_margin = 0
+TabContainer/styles/panel = SubResource("StyleBoxFlat_x6hq0")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_urtfh")
+TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_urtfh")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_urtfh")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_221hl")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_urtfh")
 TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 0.392157)
 TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 TooltipLabel/constants/outline_size = 2
