@@ -31,7 +31,7 @@ func update_score(score: int, combo: int, health: int):
 	self.score = score
 	self.combo = combo
 	self.health = health
-	score_updated.emit(score)
+	score_updated.emit()
 var score:int = 0
 var combo:int = 0
 var health:int = 0

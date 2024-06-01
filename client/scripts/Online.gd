@@ -54,7 +54,7 @@ func _player_setup(display_name:String):
 	var peer_id = multiplayer.get_remote_sender_id()
 	var player = players.get(peer_id)
 	if player == null: push_error("Player doesn't exist? %s" % peer_id)
-	if !player.awaiting_info: push_error("Player already has info? %s" % peer_id)
+	#if !player.awaiting_info: push_error("Player already has info? %s" % peer_id)
 	player.awaiting_info = false
 	player.display_name = display_name
 
