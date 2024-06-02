@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxmfr8ytmaijv"]
+
+[ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_jabis"]
+[ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_ibq53"]
+[ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_0s5h2"]
+[ext_resource type="AudioStream" uid="uid://bwj2cvxtg26t1" path="res://sounds/menu.mp3" id="4_3w6jy"]
+[ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="5_htc46"]
+[ext_resource type="FontFile" uid="uid://pxmvrf70j3u1" path="res://fonts/Lato/Lato-Black.ttf" id="6_8tl58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
+shader = ExtResource("5_htc46")
+shader_parameter/lod = 1.5
+
+[node name="Lobbies" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jabis")
+texture = ExtResource("2_ibq53")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("3_0s5h2")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3w6jy")
+autoplay = true
+bus = &"Music"
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="H" type="HBoxContainer" parent="M"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Tabs" type="PanelContainer" parent="M/H"]
+material = SubResource("ShaderMaterial_8obuy")
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Background" type="Panel" parent="M/H/Tabs"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/H/Tabs"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="Control" parent="M/H/Tabs/M"]
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="LobbyList" type="PanelContainer" parent="M/H/Right"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Background" type="Panel" parent="M/H/Right/LobbyList"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/H/Right/LobbyList"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="ScrollContainer" parent="M/H/Right/LobbyList/M"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/H/Right/LobbyList/M/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 8
+
+[node name="V" type="VBoxContainer" parent="M/H/Right/LobbyList/M/Content/M"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V"]
+layout_mode = 2
+text = "Only direct connection is supported at this time.
+
+This requires you to either set up port forwarding (UDP 4444) to your local machine or connect to a VPN like Hamachi or Radmin."
+
+[node name="DirectConnection" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/M/V"]
+layout_mode = 2
+
+[node name="IP" type="LineEdit" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "IP Address"
+
+[node name="Button" type="Button" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateLobby" type="Button" parent="M/H/Right/LobbyList/M/Content/M/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Icon" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby/H"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_8tl58")
+theme_override_font_sizes/font_size = 18
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby/H"]
+layout_mode = 2
+text = "Create New Lobby (Host)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1256.0
+offset_bottom = 696.0
+
+[node name="Background" type="Panel" parent="Panel"]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="Control" parent="Panel/M"]
+layout_mode = 2
