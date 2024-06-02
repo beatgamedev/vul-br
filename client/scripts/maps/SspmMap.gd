@@ -91,16 +91,18 @@ func load_cover():
 				var image = Image.new()
 				var length = file.get_64()
 				image.load_png_from_buffer(file.get_buffer(length))
-				cover.set_image(image)
+				cover = ImageTexture.create_from_image(image)
 	elif sspm_version == 2:
 		var image = Image.new()
 		image.load_png_from_buffer(file.get_buffer(_cover_length))
-		cover.set_image(image)
+		cover = ImageTexture.create_from_image(image)
+	cover_loaded.emit()
 func load_music():
 	if broken: return
 	var file = FileAccess.open(path, FileAccess.READ)
 	file.seek(_music_offset)
 	music = Globals.load_audio(file.get_buffer(_music_length))
+	music_loaded.emit()
 func load_notes():
 	if broken: return
 	notes = []
@@ -155,6 +157,7 @@ func load_notes():
 			notes.append(note)
 		notes.sort_custom(func(a,b): return a.time < b.time)
 		for i in notes.size(): notes[i].index = i
+	notes_loaded.emit()
 func _read_data_type(file:FileAccess,skip_type:bool=false,skip_array_type:bool=false,type:int=0,array_type:int=0):
 	if !skip_type:
 		type = file.get_8()
