@@ -1,0 +1,163 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt5jmsryb2m6s"]
+
+[ext_resource type="Script" path="res://scripts/menu/options/Options.gd" id="1_dhstm"]
+[ext_resource type="PackedScene" uid="uid://duh15tsixi4qh" path="res://prefabs/options/SpinBoxOption.tscn" id="1_mysq6"]
+[ext_resource type="PackedScene" uid="uid://c153f76k7ksms" path="res://prefabs/options/CheckBoxOption.tscn" id="2_k6e21"]
+
+[node name="Options" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 0.392157)
+script = ExtResource("1_dhstm")
+
+[node name="Options" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(432, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="Line" type="ColorRect" parent="Options"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="H" type="HBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tabs" type="VBoxContainer" parent="Options/H"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="S" type="ScrollContainer" parent="Options/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="M" type="MarginContainer" parent="Options/H/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="Options/H/S/M"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Notes" type="VBoxContainer" parent="Options/H/S/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="Options/H/S/M/V/Notes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Notes"
+vertical_alignment = 1
+
+[node name="Distance" parent="Options/H/S/M/V/Notes" instance=ExtResource("1_mysq6")]
+layout_mode = 2
+tooltip_text = "how far away notes spawn"
+text = "Approach Distance "
+tooltip = "how far away notes spawn"
+target = "approach_distance"
+value = 100.01
+suffix = "m"
+allow_greater = true
+max_value = 100.0
+min_value = 0.01
+step = 0.01
+custom_arrow_step = 5.0
+
+[node name="Time" parent="Options/H/S/M/V/Notes" instance=ExtResource("1_mysq6")]
+layout_mode = 2
+tooltip_text = "how long notes are visible for"
+text = "Approach Time "
+tooltip = "how long notes are visible for"
+target = "approach_time"
+value = 30.0
+suffix = "s"
+max_value = 30.0
+min_value = 0.01
+step = 0.01
+custom_arrow_step = 0.1
+
+[node name="Camera" type="VBoxContainer" parent="Options/H/S/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="Options/H/S/M/V/Camera"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Camera  & Controls"
+vertical_alignment = 1
+
+[node name="Absolute" parent="Options/H/S/M/V/Camera" instance=ExtResource("2_k6e21")]
+layout_mode = 2
+tooltip_text = "good for tablets"
+text = "Absolute Mode"
+tooltip = "good for tablets"
+target = "absolute_mode"
+
+[node name="Sensitivity" parent="Options/H/S/M/V/Camera" instance=ExtResource("1_mysq6")]
+layout_mode = 2
+tooltip_text = "how fast the camera/cursor moves"
+text = "Sensitivity"
+tooltip = "how fast the camera/cursor moves"
+target = "sensitivity"
+value = 1.0
+suffix = "x"
+allow_greater = true
+allow_lesser = true
+max_value = 100.0
+step = 0.01
+custom_arrow_step = 0.05
+
+[node name="Parallax" parent="Options/H/S/M/V/Camera" instance=ExtResource("1_mysq6")]
+layout_mode = 2
+tooltip_text = "how much the camera moves"
+text = "Parallax"
+tooltip = "how much the camera moves"
+target = "parallax"
+value = 1.0
+suffix = "x"
+allow_greater = true
+allow_lesser = true
+max_value = 100.0
+step = 0.01
+custom_arrow_step = 0.1
+
+[node name="Camlock" parent="Options/H/S/M/V/Camera" instance=ExtResource("2_k6e21")]
+layout_mode = 2
+tooltip_text = "whether the camera moves or not"
+text = "Camera Lock"
+tooltip = "whether the camera moves or not"
+target = "camera_lock"
+value = true
+
+[node name="Drift" parent="Options/H/S/M/V/Camera" instance=ExtResource("2_k6e21")]
+layout_mode = 2
+tooltip_text = "locks the cursor to the grid"
+text = "Cursor Drift"
+tooltip = "locks the cursor to the grid"
+target = "drift"
+value = true

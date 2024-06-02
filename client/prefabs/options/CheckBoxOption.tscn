@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://c153f76k7ksms"]
+
+[ext_resource type="Script" path="res://scripts/menu/options/CheckBoxOption.gd" id="1_r27os"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sm8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.588235)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CheckBoxOption" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_q1sm8")
+script = ExtResource("1_r27os")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Approach Distance "
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckButton" parent="H"]
+layout_mode = 2
+flat = true
+
+[connection signal="toggled" from="H/CheckBox" to="." method="_update"]
