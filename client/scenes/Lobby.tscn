@@ -1,0 +1,269 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp4on0yrcm018"]
+
+[ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_0nekl"]
+[ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_goa8m"]
+[ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_nnsoi"]
+[ext_resource type="Texture2D" uid="uid://b0jpbbnpnbved" path="res://images/vulnus.png" id="5_k85xs"]
+[ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="6_ljlfp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
+shader = ExtResource("6_ljlfp")
+shader_parameter/lod = 1.5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4gc1"]
+
+[node name="Lobby" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0nekl")
+texture = ExtResource("2_goa8m")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("3_nnsoi")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="V" type="VBoxContainer" parent="M"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LobbyInfo" type="PanelContainer" parent="M/V"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+
+[node name="Background" type="Panel" parent="M/V/LobbyInfo"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/V/LobbyInfo"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="Content" type="HBoxContainer" parent="M/V/LobbyInfo/M"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LobbyInfo" type="PanelContainer" parent="M/V/LobbyInfo/M/Content"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="M" type="MarginContainer" parent="M/V/LobbyInfo/M/Content/LobbyInfo"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="H" type="HBoxContainer" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DisplayName" type="Label" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "fog's lobby"
+vertical_alignment = 1
+
+[node name="PlayerCount" type="Label" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "1/32"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="VSeparator" parent="M/V/LobbyInfo/M/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_x4gc1")
+
+[node name="Host" type="PanelContainer" parent="M/V/LobbyInfo/M/Content"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="M" type="MarginContainer" parent="M/V/LobbyInfo/M/Content/Host"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="M/V/LobbyInfo/M/Content/Host/M"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Host: fog"
+vertical_alignment = 1
+
+[node name="Edit" type="Button" parent="M/V/LobbyInfo/M/Content"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = " "
+
+[node name="Label" type="Label" parent="M/V/LobbyInfo/M/Content/Edit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Edit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Players" type="PanelContainer" parent="M/V/H"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Panel" parent="M/V/H/Players"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/V/H/Players"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="VBoxContainer" parent="M/V/H/Players/M"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="M/V/H/Players/M/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Players"
+
+[node name="S" type="ScrollContainer" parent="M/V/H/Players/M/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 8
+
+[node name="Items" type="VBoxContainer" parent="M/V/H/Players/M/Content/S/M"]
+layout_mode = 2
+
+[node name="Player" type="PanelContainer" parent="M/V/H/Players/M/Content/S/M/Items"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="H" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player/M"]
+layout_mode = 2
+
+[node name="Icons" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Host" type="TextureRect" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H/Icons"]
+layout_mode = 2
+texture = ExtResource("5_k85xs")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H"]
+layout_mode = 2
+text = "PlayerName"
+vertical_alignment = 1
+
+[node name="Maps" type="PanelContainer" parent="M/V/H"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Panel" parent="M/V/H/Maps"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/V/H/Maps"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="VBoxContainer" parent="M/V/H/Maps/M"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="M/V/H/Maps/M/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Maps"
+
+[node name="Chat" type="PanelContainer" parent="M/V/H"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Panel" parent="M/V/H/Chat"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/V/H/Chat"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="VBoxContainer" parent="M/V/H/Chat/M"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="M/V/H/Chat/M/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Chat"
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1256.0
+offset_bottom = 696.0
+
+[node name="Background" type="Panel" parent="Panel"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="Control" parent="Panel/M"]
+layout_mode = 2

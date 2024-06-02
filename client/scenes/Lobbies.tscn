@@ -1,18 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxmfr8ytmaijv"]
+[gd_scene load_steps=9 format=3 uid="uid://bxmfr8ytmaijv"]
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_jabis"]
 [ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_ibq53"]
 [ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_0s5h2"]
-[ext_resource type="AudioStream" uid="uid://bwj2cvxtg26t1" path="res://sounds/menu.mp3" id="4_3w6jy"]
+[ext_resource type="AudioStream" uid="uid://bwj2cvxtg26t1" path="res://sounds/lobbies.mp3" id="4_i3vr6"]
 [ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="5_htc46"]
 [ext_resource type="FontFile" uid="uid://pxmvrf70j3u1" path="res://fonts/Lato/Lato-Black.ttf" id="6_8tl58"]
+[ext_resource type="Script" path="res://scripts/menu/options/OptionsButton.gd" id="6_vyyju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
 shader = ExtResource("5_htc46")
 shader_parameter/lod = 1.5
 
 [node name="Lobbies" type="TextureRect"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -24,7 +25,7 @@ stretch_mode = 6
 script = ExtResource("3_0s5h2")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_3w6jy")
+stream = ExtResource("4_i3vr6")
 autoplay = true
 bus = &"Music"
 
@@ -59,8 +60,24 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="Control" parent="M/H/Tabs/M"]
+[node name="Content" type="VBoxContainer" parent="M/H/Tabs/M"]
 layout_mode = 2
+
+[node name="Options" type="Button" parent="M/H/Tabs/M/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+script = ExtResource("6_vyyju")
+
+[node name="Label" type="Label" parent="M/H/Tabs/M/Content/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Right" type="VBoxContainer" parent="M/H"]
 layout_mode = 2
