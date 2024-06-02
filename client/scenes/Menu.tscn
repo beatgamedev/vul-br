@@ -2,27 +2,19 @@
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_neub8"]
 [ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="2_8pakv"]
+[ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_akx7u"]
 [ext_resource type="AudioStream" uid="uid://bwj2cvxtg26t1" path="res://sounds/menu.mp3" id="10_v5vq3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svbs3"]
-bg_color = Color(0.12549, 0.12549, 0.12549, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
-[node name="Menu" type="ColorRect"]
-anchors_preset = 15
+[node name="Menu" type="TextureRect"]
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_neub8")
-color = Color(0.0627451, 0.0627451, 0.0941176, 1)
+texture = ExtResource("2_akx7u")
+expand_mode = 3
+stretch_mode = 6
 script = ExtResource("2_8pakv")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -30,53 +22,14 @@ stream = ExtResource("10_v5vq3")
 autoplay = true
 bus = &"Music"
 
-[node name="Options" type="ColorRect" parent="."]
+[node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
-
-[node name="C" type="CenterContainer" parent="Options"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="OptionsPanel" type="PanelContainer" parent="Options/C"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_svbs3")
-
-[node name="V" type="VBoxContainer" parent="Options/C/OptionsPanel"]
-layout_mode = 2
-
-[node name="T" type="TabContainer" parent="Options/C/OptionsPanel/V"]
-custom_minimum_size = Vector2(448, 320)
-layout_mode = 2
-
-[node name="Control" type="Control" parent="Options/C/OptionsPanel/V/T"]
-layout_mode = 2
-
-[node name="H" type="HBoxContainer" parent="Options/C/OptionsPanel/V"]
-layout_mode = 2
-alignment = 2
-
-[node name="Apply" type="Button" parent="Options/C/OptionsPanel/V/H"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Apply"
-
-[node name="Label" type="Label" parent="Options/C/OptionsPanel/V/H/Apply"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Apply"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24

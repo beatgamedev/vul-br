@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb3akd6ujrg3i"]
+
+[ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_otw4e"]
+[ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_7johv"]
+[ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="3_r5fmv"]
+[ext_resource type="Script" path="res://scripts/Init.gd" id="3_uwodc"]
+[ext_resource type="Texture2D" uid="uid://b0jpbbnpnbved" path="res://images/vulnus.png" id="4_e6rql"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndpg0"]
+shader = ExtResource("3_r5fmv")
+shader_parameter/lod = 1.5
+
+[node name="Init" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_otw4e")
+texture = ExtResource("2_7johv")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("3_uwodc")
+
+[node name="M" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P" type="PanelContainer" parent="M"]
+material = SubResource("ShaderMaterial_ndpg0")
+layout_mode = 2
+
+[node name="Background" type="Panel" parent="M/P"]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/P"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="M/P/M"]
+layout_mode = 2
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="M/P/M/V"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("4_e6rql")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="M/P/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="M/P/M/V"]
+layout_mode = 2
+text = "Waiting for engine"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="M/P/M/V"]
+custom_minimum_size = Vector2(384, 14)
+layout_mode = 2
+show_percentage = false

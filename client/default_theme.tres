@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=3 uid="uid://c1cjv4i1sp1hv"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://c1cjv4i1sp1hv"]
 
 [ext_resource type="FontFile" uid="uid://bmk2mflfcwe33" path="res://fonts/Lato/Lato-Regular.ttf" id="1_u8fyd"]
 [ext_resource type="FontFile" uid="uid://bf8h1hxdvj8x8" path="res://fonts/NotoSansJP-Medium.otf" id="2_s3bk0"]
@@ -108,35 +108,48 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouam5"]
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afb4b"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfblq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con7m"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.392157)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bi61"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn7jv"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 0.588235)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6hq0"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
@@ -202,8 +215,12 @@ Label/constants/shadow_outline_size = 2
 LineEdit/styles/focus = SubResource("StyleBoxFlat_h1tsd")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_x1w22")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_d1vkg")
+OptionsTabButton/base_type = &"Button"
+OptionsTabButton/styles/normal = SubResource("StyleBoxFlat_ouam5")
 Panel/styles/panel = SubResource("StyleBoxFlat_afb4b")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_lfblq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_con7m")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_5bi61")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_tn7jv")
 TabContainer/constants/side_margin = 0
 TabContainer/styles/panel = SubResource("StyleBoxFlat_x6hq0")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_urtfh")
