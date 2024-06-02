@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://byqfe7an8xr1t"]
+
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapButton.gd" id="1_ua6v2"]
+[ext_resource type="Texture2D" uid="uid://d2qmxl1plxgqv" path="res://images/cover_tex.png" id="2_11so4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldg7e"]
+bg_color = Color(1, 1, 1, 0.376471)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Map" type="Button"]
+custom_minimum_size = Vector2(0, 72)
+size_flags_horizontal = 3
+toggle_mode = true
+script = ExtResource("1_ua6v2")
+
+[node name="Cover" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldg7e")
+
+[node name="Image" type="TextureRect" parent="Cover"]
+layout_mode = 2
+texture = ExtResource("2_11so4")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="V" type="VBoxContainer" parent="M"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="M/V"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 14
+text = "Really Long Map Name That Goes On Forever and Ever and Ever and Ever and Ever and Ever and Ever"
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="H" type="HBoxContainer" parent="M/V"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Mapper" type="Label" parent="M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "MapperName, MapperName, MapperName"
+text_overrun_behavior = 3
+
+[node name="Difficulty" type="Label" parent="M/V/H"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Logic"
+horizontal_alignment = 2
