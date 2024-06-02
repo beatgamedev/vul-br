@@ -1,16 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp4on0yrcm018"]
+[gd_scene load_steps=11 format=3 uid="uid://cp4on0yrcm018"]
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_0nekl"]
 [ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_goa8m"]
 [ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_nnsoi"]
 [ext_resource type="Texture2D" uid="uid://b0jpbbnpnbved" path="res://images/vulnus.png" id="5_k85xs"]
 [ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="6_ljlfp"]
+[ext_resource type="Texture2D" uid="uid://d2qmxl1plxgqv" path="res://images/cover_tex.png" id="7_j6o1s"]
+[ext_resource type="PackedScene" uid="uid://ql7exnftci6x" path="res://prefabs/maplist/MapList.tscn" id="7_x2te0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
 shader = ExtResource("6_ljlfp")
 shader_parameter/lod = 1.5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4gc1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldg7e"]
+bg_color = Color(1, 1, 1, 0.376471)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Lobby" type="TextureRect"]
 anchors_preset = 15
@@ -39,34 +48,35 @@ theme_override_constants/margin_top = 36
 theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 36
 
-[node name="V" type="VBoxContainer" parent="M"]
+[node name="Lobby" type="VBoxContainer" parent="M"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="LobbyInfo" type="PanelContainer" parent="M/V"]
+[node name="LobbyInfo" type="PanelContainer" parent="M/Lobby"]
 material = SubResource("ShaderMaterial_8obuy")
 layout_mode = 2
 
-[node name="Background" type="Panel" parent="M/V/LobbyInfo"]
+[node name="Background" type="Panel" parent="M/Lobby/LobbyInfo"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/V/LobbyInfo"]
+[node name="M" type="MarginContainer" parent="M/Lobby/LobbyInfo"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="Content" type="HBoxContainer" parent="M/V/LobbyInfo/M"]
+[node name="Content" type="HBoxContainer" parent="M/Lobby/LobbyInfo/M"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LobbyInfo" type="PanelContainer" parent="M/V/LobbyInfo/M/Content"]
+[node name="LobbyInfo" type="PanelContainer" parent="M/Lobby/LobbyInfo/M/Content"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="M" type="MarginContainer" parent="M/V/LobbyInfo/M/Content/LobbyInfo"]
+[node name="M" type="MarginContainer" parent="M/Lobby/LobbyInfo/M/Content/LobbyInfo"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -74,55 +84,54 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="H" type="HBoxContainer" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M"]
+[node name="H" type="HBoxContainer" parent="M/Lobby/LobbyInfo/M/Content/LobbyInfo/M"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="DisplayName" type="Label" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M/H"]
+[node name="DisplayName" type="Label" parent="M/Lobby/LobbyInfo/M/Content/LobbyInfo/M/H"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 text = "fog's lobby"
 vertical_alignment = 1
 
-[node name="PlayerCount" type="Label" parent="M/V/LobbyInfo/M/Content/LobbyInfo/M/H"]
+[node name="PlayerCount" type="Label" parent="M/Lobby/LobbyInfo/M/Content/LobbyInfo/M/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "1/32"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Separator" type="VSeparator" parent="M/V/LobbyInfo/M/Content"]
+[node name="Separator" type="VSeparator" parent="M/Lobby/LobbyInfo/M/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_x4gc1")
 
-[node name="Host" type="PanelContainer" parent="M/V/LobbyInfo/M/Content"]
+[node name="Host" type="PanelContainer" parent="M/Lobby/LobbyInfo/M/Content"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="M" type="MarginContainer" parent="M/V/LobbyInfo/M/Content/Host"]
+[node name="M" type="MarginContainer" parent="M/Lobby/LobbyInfo/M/Content/Host"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="M/V/LobbyInfo/M/Content/Host/M"]
+[node name="Label" type="Label" parent="M/Lobby/LobbyInfo/M/Content/Host/M"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
 text = "Host: fog"
 vertical_alignment = 1
 
-[node name="Edit" type="Button" parent="M/V/LobbyInfo/M/Content"]
+[node name="Edit" type="Button" parent="M/Lobby/LobbyInfo/M/Content"]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = " "
 
-[node name="Label" type="Label" parent="M/V/LobbyInfo/M/Content/Edit"]
+[node name="Label" type="Label" parent="M/Lobby/LobbyInfo/M/Content/Edit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,98 +142,99 @@ text = "Edit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="H" type="HBoxContainer" parent="M/V"]
+[node name="H" type="HBoxContainer" parent="M/Lobby"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="Players" type="PanelContainer" parent="M/V/H"]
+[node name="Players" type="PanelContainer" parent="M/Lobby/H"]
 material = SubResource("ShaderMaterial_8obuy")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Background" type="Panel" parent="M/V/H/Players"]
+[node name="Background" type="Panel" parent="M/Lobby/H/Players"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/V/H/Players"]
+[node name="M" type="MarginContainer" parent="M/Lobby/H/Players"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="VBoxContainer" parent="M/V/H/Players/M"]
+[node name="Content" type="VBoxContainer" parent="M/Lobby/H/Players/M"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="M/V/H/Players/M/Content"]
+[node name="Title" type="Label" parent="M/Lobby/H/Players/M/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "Players"
 
-[node name="S" type="ScrollContainer" parent="M/V/H/Players/M/Content"]
+[node name="S" type="ScrollContainer" parent="M/Lobby/H/Players/M/Content"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="Items" type="VBoxContainer" parent="M/V/H/Players/M/Content/S"]
+[node name="Items" type="VBoxContainer" parent="M/Lobby/H/Players/M/Content/S"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Player" type="PanelContainer" parent="M/V/H/Players/M/Content/S/Items"]
+[node name="Player" type="PanelContainer" parent="M/Lobby/H/Players/M/Content/S/Items"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S/Items/Player"]
+[node name="M" type="MarginContainer" parent="M/Lobby/H/Players/M/Content/S/Items/Player"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 
-[node name="H" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/Items/Player/M"]
+[node name="H" type="HBoxContainer" parent="M/Lobby/H/Players/M/Content/S/Items/Player/M"]
 layout_mode = 2
 
-[node name="Icons" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/Items/Player/M/H"]
+[node name="Icons" type="HBoxContainer" parent="M/Lobby/H/Players/M/Content/S/Items/Player/M/H"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="Host" type="TextureRect" parent="M/V/H/Players/M/Content/S/Items/Player/M/H/Icons"]
+[node name="Host" type="TextureRect" parent="M/Lobby/H/Players/M/Content/S/Items/Player/M/H/Icons"]
 layout_mode = 2
 texture = ExtResource("5_k85xs")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="M/V/H/Players/M/Content/S/Items/Player/M/H"]
+[node name="Label" type="Label" parent="M/Lobby/H/Players/M/Content/S/Items/Player/M/H"]
 layout_mode = 2
 text = "PlayerName"
 vertical_alignment = 1
 
-[node name="Maps" type="PanelContainer" parent="M/V/H"]
+[node name="Maps" type="PanelContainer" parent="M/Lobby/H"]
 material = SubResource("ShaderMaterial_8obuy")
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
 
-[node name="Background" type="Panel" parent="M/V/H/Maps"]
+[node name="Background" type="Panel" parent="M/Lobby/H/Maps"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/V/H/Maps"]
+[node name="M" type="MarginContainer" parent="M/Lobby/H/Maps"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="VBoxContainer" parent="M/V/H/Maps/M"]
+[node name="Content" type="VBoxContainer" parent="M/Lobby/H/Maps/M"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="M/V/H/Maps/M/Content"]
+[node name="Title" type="Label" parent="M/Lobby/H/Maps/M/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "Maps"
 
-[node name="Suggest" type="Button" parent="M/V/H/Maps/M/Content"]
+[node name="Suggest" type="Button" parent="M/Lobby/H/Maps/M/Content"]
 layout_mode = 2
 text = "Suggest Map"
 
-[node name="Label" type="Label" parent="M/V/H/Maps/M/Content/Suggest"]
+[node name="Label" type="Label" parent="M/Lobby/H/Maps/M/Content/Suggest"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -235,51 +245,143 @@ text = "Suggest Map"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="TabContainer" parent="M/V/H/Maps/M/Content"]
+[node name="T" type="TabContainer" parent="M/Lobby/H/Maps/M/Content"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Suggestions" type="ScrollContainer" parent="M/V/H/Maps/M/Content/T"]
+[node name="Suggestions" type="ScrollContainer" parent="M/Lobby/H/Maps/M/Content/T"]
 layout_mode = 2
 
-[node name="V" type="VBoxContainer" parent="M/V/H/Maps/M/Content/T/Suggestions"]
+[node name="V" type="VBoxContainer" parent="M/Lobby/H/Maps/M/Content/T/Suggestions"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel" type="PanelContainer" parent="M/V/H/Maps/M/Content/T/Suggestions/V"]
-custom_minimum_size = Vector2(0, 48)
+[node name="Map" type="Button" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V"]
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
+toggle_mode = true
 
-[node name="History" type="ScrollContainer" parent="M/V/H/Maps/M/Content/T"]
+[node name="Cover" type="PanelContainer" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldg7e")
+
+[node name="Image" type="TextureRect" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/Cover"]
+layout_mode = 2
+texture = ExtResource("7_j6o1s")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="M" type="MarginContainer" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="V" type="VBoxContainer" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/M"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/M/V"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 14
+text = "Really Long Map Name That Goes On Forever and Ever and Ever and Ever and Ever and Ever and Ever"
+vertical_alignment = 1
+autowrap_mode = 1
+text_overrun_behavior = 3
+
+[node name="H" type="HBoxContainer" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Mapper" type="Label" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "MapperName, MapperName, MapperName"
+text_overrun_behavior = 3
+
+[node name="Suggester" type="Label" parent="M/Lobby/H/Maps/M/Content/T/Suggestions/V/Map/M/V/H"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "fogsaturate"
+horizontal_alignment = 2
+
+[node name="History" type="ScrollContainer" parent="M/Lobby/H/Maps/M/Content/T"]
 visible = false
 layout_mode = 2
 
-[node name="V" type="VBoxContainer" parent="M/V/H/Maps/M/Content/T/History"]
+[node name="V" type="VBoxContainer" parent="M/Lobby/H/Maps/M/Content/T/History"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Chat" type="PanelContainer" parent="M/V/H"]
+[node name="Chat" type="PanelContainer" parent="M/Lobby/H"]
 material = SubResource("ShaderMaterial_8obuy")
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
 
-[node name="Background" type="Panel" parent="M/V/H/Chat"]
+[node name="Background" type="Panel" parent="M/Lobby/H/Chat"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/V/H/Chat"]
+[node name="M" type="MarginContainer" parent="M/Lobby/H/Chat"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="VBoxContainer" parent="M/V/H/Chat/M"]
+[node name="Content" type="VBoxContainer" parent="M/Lobby/H/Chat/M"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="M/V/H/Chat/M/Content"]
+[node name="Title" type="Label" parent="M/Lobby/H/Chat/M/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "Chat"
+
+[node name="P" type="PanelContainer" parent="M/Lobby/H/Chat/M/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="V" type="VBoxContainer" parent="M/Lobby/H/Chat/M/Content/P"]
+layout_mode = 2
+
+[node name="S" type="ScrollContainer" parent="M/Lobby/H/Chat/M/Content/P/V"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Chat" type="VBoxContainer" parent="M/Lobby/H/Chat/M/Content/P/V/S"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Message" type="RichTextLabel" parent="M/Lobby/H/Chat/M/Content/P/V/S/Chat"]
+layout_mode = 2
+text = "ExampleText"
+fit_content = true
+
+[node name="ChatBox" type="LineEdit" parent="M/Lobby/H/Chat/M/Content/P/V"]
+layout_mode = 2
+
+[node name="MapList" parent="M" instance=ExtResource("7_x2te0")]
+layout_mode = 2
 
 [node name="Panel" type="PanelContainer" parent="."]
 visible = false

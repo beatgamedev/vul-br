@@ -1,5 +1,9 @@
 class_name Map # Inherited by other map formats
 
+signal cover_loaded
+signal music_loaded
+signal notes_loaded
+
 var path:String
 var broken:bool = false
 

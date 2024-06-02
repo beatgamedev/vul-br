@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dum5do6l4u517"]
+
+[ext_resource type="Script" path="res://scripts/menu/maplist/SortButton.gd" id="1_qtprp"]
+[ext_resource type="Texture2D" uid="uid://di1m1y40bjcsy" path="res://images/arrow_up.png" id="2_jssgo"]
+[ext_resource type="Texture2D" uid="uid://60hv1fafhm5j" path="res://images/arrow_down.png" id="3_r0trv"]
+
+[node name="NameSort" type="MarginContainer"]
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+script = ExtResource("1_qtprp")
+label = "SortButton"
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H"]
+layout_mode = 2
+text = "SortButton"
+vertical_alignment = 1
+
+[node name="Up" type="TextureRect" parent="H"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_jssgo")
+stretch_mode = 5
+
+[node name="Down" type="TextureRect" parent="H"]
+layout_mode = 2
+texture = ExtResource("3_r0trv")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="toggle_ascending"]

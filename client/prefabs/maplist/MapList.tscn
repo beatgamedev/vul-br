@@ -1,0 +1,151 @@
+[gd_scene load_steps=7 format=3 uid="uid://ql7exnftci6x"]
+
+[ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="1_anaqw"]
+[ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="1_er3sm"]
+[ext_resource type="PackedScene" uid="uid://dum5do6l4u517" path="res://prefabs/maplist/SortButton.tscn" id="2_d8uf2"]
+[ext_resource type="Texture2D" uid="uid://d2qmxl1plxgqv" path="res://images/cover_tex.png" id="3_log5n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
+shader = ExtResource("1_anaqw")
+shader_parameter/lod = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldg7e"]
+bg_color = Color(1, 1, 1, 0.376471)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MapList" type="VBoxContainer"]
+custom_minimum_size = Vector2(800, 200)
+script = ExtResource("1_er3sm")
+
+[node name="Filters" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+
+[node name="Background" type="Panel" parent="Filters"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="Filters"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="HBoxContainer" parent="Filters/M"]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="Filters/M/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search for a map/mapper"
+
+[node name="NameSort" parent="Filters/M/Content" instance=ExtResource("2_d8uf2")]
+layout_mode = 2
+label = "Name"
+
+[node name="MapperSort" parent="Filters/M/Content" instance=ExtResource("2_d8uf2")]
+layout_mode = 2
+label = "Mapper"
+
+[node name="Maps" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Background" type="Panel" parent="Maps"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="Maps"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="ScrollContainer" parent="Maps/M"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="M" type="MarginContainer" parent="Maps/M/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 8
+
+[node name="G" type="GridContainer" parent="Maps/M/Content/M"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Map" type="Button" parent="Maps/M/Content/M/G"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+
+[node name="Cover" type="PanelContainer" parent="Maps/M/Content/M/G/Map"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldg7e")
+
+[node name="Image" type="TextureRect" parent="Maps/M/Content/M/G/Map/Cover"]
+layout_mode = 2
+texture = ExtResource("3_log5n")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="M" type="MarginContainer" parent="Maps/M/Content/M/G/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="V" type="VBoxContainer" parent="Maps/M/Content/M/G/Map/M"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="Maps/M/Content/M/G/Map/M/V"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 14
+text = "Really Long Map Name That Goes On Forever and Ever and Ever and Ever and Ever and Ever and Ever"
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="H" type="HBoxContainer" parent="Maps/M/Content/M/G/Map/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Mapper" type="Label" parent="Maps/M/Content/M/G/Map/M/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "MapperName, MapperName, MapperName"
+text_overrun_behavior = 3
+
+[node name="Difficulty" type="Label" parent="Maps/M/Content/M/G/Map/M/V/H"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Logic"
+horizontal_alignment = 2
