@@ -152,25 +152,27 @@ corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6hq0"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 0.392157)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urtfh"]
-content_margin_left = 8.0
+content_margin_left = 12.0
 content_margin_top = 2.0
-content_margin_right = 8.0
+content_margin_right = 12.0
 content_margin_bottom = 2.0
-bg_color = Color(0.12549, 0.12549, 0.12549, 0.392157)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 0.392157)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_221hl"]
-content_margin_left = 8.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snvpf"]
+content_margin_left = 12.0
 content_margin_top = 2.0
-content_margin_right = 8.0
+content_margin_right = 12.0
 content_margin_bottom = 2.0
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.392157)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwy5c"]
 content_margin_left = 8.0
@@ -221,13 +223,13 @@ Panel/styles/panel = SubResource("StyleBoxFlat_afb4b")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_con7m")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_5bi61")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_tn7jv")
-TabContainer/constants/side_margin = 0
+TabContainer/constants/side_margin = 8
 TabContainer/styles/panel = SubResource("StyleBoxFlat_x6hq0")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_urtfh")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_urtfh")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_urtfh")
-TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_221hl")
-TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_urtfh")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_urtfh")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_snvpf")
 TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 0.392157)
 TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0.392157)
 TooltipLabel/constants/outline_size = 2
