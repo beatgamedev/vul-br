@@ -83,8 +83,18 @@ var settings:Dictionary = {
 	"sensitivity": 1,
 	"drift": true,
 	"parallax": 1,
-	"map_folders": []
+	"map_folders": [],
+	"fullscreen": false,
+	"vsync": false,
+	"fps_limit": 300
 }
+func update_settings():
+	if settings.fullscreen: get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+	else: get_window().mode = Window.MODE_WINDOWED
+	if settings.vsync: DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_MAILBOX)
+	else: DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	if settings.fps_limit < 15: settings.fps_limit = 0
+	Engine.max_fps = settings.fps_limit
 func load_settings():
 	var settings_path = find_path("settings file")
 	if FileAccess.file_exists(settings_path):
@@ -105,12 +115,14 @@ func load_settings():
 				settings[key] = data[key]
 	else:
 		print("No existing settings")
+	update_settings()
 func save_settings():
 	var settings_path = find_path("settings file")
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(settings, " ", false, false))
 	file.close()
 	print("Settings saved")
+	update_settings()
 
 # Maps
 var maps:Array[Map] = []
@@ -133,7 +145,7 @@ func init(): # This will run on another thread
 	var max_stage = 1
 	_init_stage.call_deferred("Waiting for engine", stage, max_stage)
 	await get_tree().process_frame
-	
+
 	_init_stage.call_deferred("Loading maps", stage, max_stage)
 	var map_loader = MapLoader.new()
 	map_loader.add_search_folder(find_path("maps folder"))
@@ -145,9 +157,9 @@ func init(): # This will run on another thread
 	map_loader_thread.wait_to_finish.call_deferred()
 	for map in maps: maps_by_id[map.id] = map
 	stage += 1
-	
+
 	_init_stage.call_deferred("Done", stage, max_stage)
-	
+
 	await get_tree().process_frame
 	_init_finished.call_deferred()
 
