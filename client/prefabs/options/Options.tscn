@@ -64,6 +64,35 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 16
 
+[node name="Video" type="VBoxContainer" parent="Options/H/S/M/V"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="Options/H/S/M/V/Video"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Video"
+vertical_alignment = 1
+
+[node name="Fullscreen" parent="Options/H/S/M/V/Video" instance=ExtResource("2_k6e21")]
+layout_mode = 2
+text = "Fullscreen"
+target = "fullscreen"
+
+[node name="Vsync" parent="Options/H/S/M/V/Video" instance=ExtResource("2_k6e21")]
+layout_mode = 2
+text = "Vsync"
+target = "vsync"
+
+[node name="FPS" parent="Options/H/S/M/V/Video" instance=ExtResource("1_mysq6")]
+layout_mode = 2
+text = "FPS Limit"
+target = "fps_limit"
+allow_greater = true
+max_value = 100.0
+step = 1.0
+custom_arrow_step = 5.0
+
 [node name="Notes" type="VBoxContainer" parent="Options/H/S/M/V"]
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -80,7 +109,7 @@ tooltip_text = "how far away notes spawn"
 text = "Approach Distance "
 tooltip = "how far away notes spawn"
 target = "approach_distance"
-value = 100.0
+value = 100.01
 suffix = "m"
 allow_greater = true
 max_value = 100.0
