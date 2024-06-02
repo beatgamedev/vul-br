@@ -1,5 +1,8 @@
 extends Node
 
+func _process(delta:float):
+	_background_noise(delta)
+
 func change_scene(scene:Node):
 	_change_scene.call_deferred(scene)
 func _change_scene(scene:Node):
@@ -38,3 +41,24 @@ func seconds_to_timestamp(total_seconds: int) -> String:
 	var result = "%d:%02d" % [minutes, seconds]
 	if total_seconds < 0: result = "-" + result
 	return result
+
+var noise_texture:NoiseTexture2D = preload("res://textures/BackgroundNoise.tres")
+var _bg_noise_dir:float = 1
+var _bg_noise_total:float = 0
+var _bg_noise_real_total:float = 0
+var _bg_noise_tween:Tween
+func _background_noise(delta:float):
+	var noise = noise_texture.noise
+	_bg_noise_total += delta * _bg_noise_dir
+	_bg_noise_real_total += delta
+	if (_bg_noise_total * sign(_bg_noise_dir)) > 120 and abs(_bg_noise_dir) == 1: # after 2 minutes, then 4, then 4 ...
+		_flip_background_noise()
+	var rotation_offset = Vector3( sin(_bg_noise_real_total / 20) * 200.0, cos(_bg_noise_real_total / 20) * 100.0, 0)
+	noise.offset = Vector3(0, 0, _bg_noise_total * 20.0) + rotation_offset
+func _flip_background_noise():
+	if _bg_noise_tween: _bg_noise_tween.kill()
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "_bg_noise_dir", -sign(_bg_noise_dir), 10)
+	_bg_noise_tween = tween
