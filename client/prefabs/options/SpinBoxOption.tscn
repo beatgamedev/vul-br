@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://duh15tsixi4qh"]
+
+[ext_resource type="Script" path="res://scripts/menu/options/SpinBoxOption.gd" id="1_y22n2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sm8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.588235)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SpinBoxOption" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_q1sm8")
+script = ExtResource("1_y22n2")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Approach Distance "
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="H"]
+layout_mode = 2
+
+[connection signal="value_changed" from="H/SpinBox" to="." method="_update"]

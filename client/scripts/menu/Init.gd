@@ -19,7 +19,7 @@ func _ready():
 	_thread.start.call_deferred(Vulnus.init)
 
 func _exit_tree():
-	_thread.wait_to_finish()
+	if _thread.is_started(): _thread.wait_to_finish()
 
 func _fade_in():
 	$FadeIn.visible = true
