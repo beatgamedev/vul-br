@@ -7,14 +7,12 @@ colors = PackedColorArray(0, 0, 0, 0.196078, 0.392157, 0.588235, 0.784314, 0.392
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5l1n3"]
 noise_type = 3
-frequency = 0.005
 fractal_type = 0
 fractal_octaves = 1
 
 [resource]
 in_3d_space = true
 generate_mipmaps = false
-seamless = true
 seamless_blend_skirt = 0.2
 color_ramp = SubResource("Gradient_uw2i2")
 noise = SubResource("FastNoiseLite_5l1n3")

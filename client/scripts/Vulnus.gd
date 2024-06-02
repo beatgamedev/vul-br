@@ -115,15 +115,44 @@ func save_settings():
 # Maps
 var maps:Array[Map] = []
 var maps_by_id:Dictionary = {}
-func load_maps():
+
+# Init
+signal on_init_stage(text:String, stage:int, max_stage:int)
+func _init_stage(text:String, stage:int, max_stage:int):
+	on_init_stage.emit(text, stage, max_stage)
+signal on_init_substage(text:String, stage:int, max_stage:int, substage:int, max_substage:int)
+func _init_substage(text:String, stage:int, max_stage:int, substage:int, max_substage:int):
+	on_init_substage.emit(text, stage, max_stage, substage, max_substage)
+func _on_loading_maps(current:int, total:int, errors:int):
+	_init_substage.call_deferred("Loading maps (%s/%s)" % [current, total], 0, 1, current, total)
+signal on_init_finished()
+func _init_finished():
+	on_init_finished.emit()
+func init(): # This will run on another thread
+	var stage = 0
+	var max_stage = 1
+	_init_stage.call_deferred("Waiting for engine", stage, max_stage)
+	await get_tree().process_frame
+	
+	_init_stage.call_deferred("Loading maps", stage, max_stage)
 	var map_loader = MapLoader.new()
 	map_loader.add_search_folder(find_path("maps folder"))
 	for folder in settings.map_folders:
 		map_loader.add_search_folder(expand_path(folder))
-	maps = map_loader.load_maps_blocking()
+	map_loader.loading_maps.connect(_on_loading_maps)
+	var map_loader_thread = map_loader.load_maps()
+	maps = await map_loader.loaded_maps
+	map_loader_thread.wait_to_finish.call_deferred()
 	for map in maps: maps_by_id[map.id] = map
+	stage += 1
+	
+	_init_stage.call_deferred("Done", stage, max_stage)
+	
+	await get_tree().process_frame
+	_init_finished.call_deferred()
+
 func load_game(map_id:String):
-	var map = Vulnus.maps_by_id.get(map_id)
+	var map = maps_by_id.get(map_id)
 	if map == null: return
 	var game = preload("res://scenes/Game.tscn").instantiate()
 	game.map = map
@@ -138,9 +167,6 @@ func _ready():
 	DiscordRPC.details = "Loading"
 	DiscordRPC.state = "Loading"
 	DiscordRPC.refresh()
-
-	#load_maps()
-	#print("Loaded %s maps" % maps.size())
 
 func _process(delta):
 	DiscordRPC.run_callbacks()

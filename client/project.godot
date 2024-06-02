@@ -16,6 +16,7 @@ run/main_scene="res://scenes/Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="vulbr"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://images/vulnus.png"
 config/windows_native_icon="res://images/vulnus.ico"
@@ -66,6 +67,6 @@ common/max_physics_steps_per_frame=1
 
 [rendering]
 
-driver/threads/thread_model=2
+driver/depth_prepass/enable=false
 environment/defaults/default_clear_color=Color(0.12549, 0.12549, 0.188235, 1)
 anti_aliasing/quality/msaa_3d=1
