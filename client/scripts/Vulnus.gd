@@ -139,8 +139,8 @@ func _ready():
 	DiscordRPC.state = "Loading"
 	DiscordRPC.refresh()
 
-	load_maps()
-	print("Loaded %s maps" % maps.size())
+	#load_maps()
+	#print("Loaded %s maps" % maps.size())
 
 func _process(delta):
 	DiscordRPC.run_callbacks()
