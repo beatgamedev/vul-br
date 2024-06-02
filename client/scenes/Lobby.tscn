@@ -164,38 +164,35 @@ text = "Players"
 [node name="S" type="ScrollContainer" parent="M/V/H/Players/M/Content"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
-[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S"]
+[node name="Items" type="VBoxContainer" parent="M/V/H/Players/M/Content/S"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_right = 8
 
-[node name="Items" type="VBoxContainer" parent="M/V/H/Players/M/Content/S/M"]
+[node name="Player" type="PanelContainer" parent="M/V/H/Players/M/Content/S/Items"]
 layout_mode = 2
 
-[node name="Player" type="PanelContainer" parent="M/V/H/Players/M/Content/S/M/Items"]
-layout_mode = 2
-
-[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player"]
+[node name="M" type="MarginContainer" parent="M/V/H/Players/M/Content/S/Items/Player"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 
-[node name="H" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player/M"]
+[node name="H" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/Items/Player/M"]
 layout_mode = 2
 
-[node name="Icons" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H"]
+[node name="Icons" type="HBoxContainer" parent="M/V/H/Players/M/Content/S/Items/Player/M/H"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="Host" type="TextureRect" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H/Icons"]
+[node name="Host" type="TextureRect" parent="M/V/H/Players/M/Content/S/Items/Player/M/H/Icons"]
 layout_mode = 2
 texture = ExtResource("5_k85xs")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="M/V/H/Players/M/Content/S/M/Items/Player/M/H"]
+[node name="Label" type="Label" parent="M/V/H/Players/M/Content/S/Items/Player/M/H"]
 layout_mode = 2
 text = "PlayerName"
 vertical_alignment = 1
@@ -222,6 +219,44 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Maps"
+
+[node name="Suggest" type="Button" parent="M/V/H/Maps/M/Content"]
+layout_mode = 2
+text = "Suggest Map"
+
+[node name="Label" type="Label" parent="M/V/H/Maps/M/Content/Suggest"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Suggest Map"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T" type="TabContainer" parent="M/V/H/Maps/M/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Suggestions" type="ScrollContainer" parent="M/V/H/Maps/M/Content/T"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="M/V/H/Maps/M/Content/T/Suggestions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="PanelContainer" parent="M/V/H/Maps/M/Content/T/Suggestions/V"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="History" type="ScrollContainer" parent="M/V/H/Maps/M/Content/T"]
+visible = false
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="M/V/H/Maps/M/Content/T/History"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Chat" type="PanelContainer" parent="M/V/H"]
 material = SubResource("ShaderMaterial_8obuy")

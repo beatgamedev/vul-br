@@ -102,38 +102,32 @@ theme_override_constants/margin_bottom = 8
 [node name="Content" type="ScrollContainer" parent="M/H/Right/LobbyList/M"]
 layout_mode = 2
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
+vertical_scroll_mode = 3
 
-[node name="M" type="MarginContainer" parent="M/H/Right/LobbyList/M/Content"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_right = 8
-
-[node name="V" type="VBoxContainer" parent="M/H/Right/LobbyList/M/Content/M"]
+[node name="V" type="VBoxContainer" parent="M/H/Right/LobbyList/M/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V"]
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V"]
 layout_mode = 2
 text = "Only direct connection is supported at this time.
 
 This requires you to either set up port forwarding (UDP 4444) to your local machine or connect to a VPN like Hamachi or Radmin."
 
-[node name="DirectConnection" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/M/V"]
+[node name="DirectConnection" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/V"]
 layout_mode = 2
 
-[node name="IP" type="LineEdit" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection"]
+[node name="IP" type="LineEdit" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "IP Address"
 
-[node name="Button" type="Button" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection"]
+[node name="Button" type="Button" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/DirectConnection/Button"]
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,11 +138,11 @@ text = "Join"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreateLobby" type="Button" parent="M/H/Right/LobbyList/M/Content/M/V"]
+[node name="CreateLobby" type="Button" parent="M/H/Right/LobbyList/M/Content/V"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
-[node name="H" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby"]
+[node name="H" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -158,7 +152,7 @@ grow_vertical = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Icon" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby/H"]
+[node name="Icon" type="Label" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby/H"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_8tl58")
 theme_override_font_sizes/font_size = 18
@@ -166,7 +160,7 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/M/V/CreateLobby/H"]
+[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby/H"]
 layout_mode = 2
 text = "Create New Lobby (Host)"
 horizontal_alignment = 1

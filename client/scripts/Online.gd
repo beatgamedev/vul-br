@@ -57,6 +57,7 @@ func _player_setup(display_name:String):
 	#if !player.awaiting_info: push_error("Player already has info? %s" % peer_id)
 	player.awaiting_info = false
 	player.display_name = display_name
+	player_added.emit(peer_id, player)
 
 func _player_connected(peer_id:int):
 	var player = preload("res://prefabs/Player.tscn").instantiate()
@@ -65,7 +66,6 @@ func _player_connected(peer_id:int):
 	players[peer_id] = player
 	player.set_multiplayer_authority(peer_id)
 	add_child(player)
-	player_added.emit(peer_id, player)
 	if local_player != null: _player_setup.rpc_id(peer_id, local_player.display_name)
 func _player_removed(peer_id:int):
 	var player = players.get(peer_id)
