@@ -109,6 +109,7 @@ func load_notes():
 		file.seek(_notes_offset)
 		for i in range(_note_count):
 			var note = Note.new()
+			note.index = i
 			note.time = float(file.get_32())/1000
 			if file.get_8() == 1:
 				note.x = 2 * (-file.get_float() + 1)
