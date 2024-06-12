@@ -4,19 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://d2qmxl1plxgqv" path="res://images/cover_tex.png" id="2_11so4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldg7e"]
-bg_color = Color(1, 1, 1, 0.376471)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Map" type="Button"]
-custom_minimum_size = Vector2(0, 72)
+custom_minimum_size = Vector2(192, 72)
 size_flags_horizontal = 3
 toggle_mode = true
 script = ExtResource("1_ua6v2")
 
 [node name="Cover" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
 clip_children = 1
 layout_mode = 1
 anchors_preset = 15
@@ -29,7 +30,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ldg7e")
 [node name="Image" type="TextureRect" parent="Cover"]
 layout_mode = 2
 texture = ExtResource("2_11so4")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 6
 
 [node name="M" type="MarginContainer" parent="."]

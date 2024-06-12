@@ -40,11 +40,11 @@ placeholder_text = "Search for a map/mapper"
 
 [node name="NameSort" parent="Filters/M/Content" instance=ExtResource("2_d8uf2")]
 layout_mode = 2
-label = "Name"
+text = "Name"
 
 [node name="MapperSort" parent="Filters/M/Content" instance=ExtResource("2_d8uf2")]
 layout_mode = 2
-label = "Mapper"
+text = "Mapper"
 
 [node name="Maps" type="PanelContainer" parent="."]
 material = SubResource("ShaderMaterial_8obuy")

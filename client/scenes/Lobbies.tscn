@@ -41,34 +41,34 @@ theme_override_constants/margin_top = 36
 theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 36
 
-[node name="H" type="HBoxContainer" parent="M"]
+[node name="Lobbies" type="HBoxContainer" parent="M"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Tabs" type="PanelContainer" parent="M/H"]
+[node name="Tabs" type="PanelContainer" parent="M/Lobbies"]
 material = SubResource("ShaderMaterial_8obuy")
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
-[node name="Background" type="Panel" parent="M/H/Tabs"]
+[node name="Background" type="Panel" parent="M/Lobbies/Tabs"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/H/Tabs"]
+[node name="M" type="MarginContainer" parent="M/Lobbies/Tabs"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="VBoxContainer" parent="M/H/Tabs/M"]
+[node name="Content" type="VBoxContainer" parent="M/Lobbies/Tabs/M"]
 layout_mode = 2
 
-[node name="Options" type="Button" parent="M/H/Tabs/M/Content"]
+[node name="Options" type="Button" parent="M/Lobbies/Tabs/M/Content"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 script = ExtResource("6_vyyju")
 
-[node name="Label" type="Label" parent="M/H/Tabs/M/Content/Options"]
+[node name="Label" type="Label" parent="M/Lobbies/Tabs/M/Content/Options"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,55 +79,55 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Right" type="VBoxContainer" parent="M/H"]
+[node name="Right" type="VBoxContainer" parent="M/Lobbies"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="LobbyList" type="PanelContainer" parent="M/H/Right"]
+[node name="LobbyList" type="PanelContainer" parent="M/Lobbies/Right"]
 material = SubResource("ShaderMaterial_8obuy")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Background" type="Panel" parent="M/H/Right/LobbyList"]
+[node name="Background" type="Panel" parent="M/Lobbies/Right/LobbyList"]
 layout_mode = 2
 
-[node name="M" type="MarginContainer" parent="M/H/Right/LobbyList"]
+[node name="M" type="MarginContainer" parent="M/Lobbies/Right/LobbyList"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="ScrollContainer" parent="M/H/Right/LobbyList/M"]
+[node name="Content" type="ScrollContainer" parent="M/Lobbies/Right/LobbyList/M"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="V" type="VBoxContainer" parent="M/H/Right/LobbyList/M/Content"]
+[node name="V" type="VBoxContainer" parent="M/Lobbies/Right/LobbyList/M/Content"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V"]
+[node name="Label" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V"]
 layout_mode = 2
 text = "Only direct connection is supported at this time.
 
 This requires you to either set up port forwarding (UDP 4444) to your local machine or connect to a VPN like Hamachi or Radmin."
 
-[node name="DirectConnection" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/V"]
+[node name="DirectConnection" type="HBoxContainer" parent="M/Lobbies/Right/LobbyList/M/Content/V"]
 layout_mode = 2
 
-[node name="IP" type="LineEdit" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection"]
+[node name="IP" type="LineEdit" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "IP Address"
 
-[node name="Button" type="Button" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection"]
+[node name="Button" type="Button" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V/DirectConnection/Button"]
+[node name="Label" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,11 +138,11 @@ text = "Join"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreateLobby" type="Button" parent="M/H/Right/LobbyList/M/Content/V"]
+[node name="CreateLobby" type="Button" parent="M/Lobbies/Right/LobbyList/M/Content/V"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
-[node name="H" type="HBoxContainer" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby"]
+[node name="H" type="HBoxContainer" parent="M/Lobbies/Right/LobbyList/M/Content/V/CreateLobby"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,7 +152,7 @@ grow_vertical = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Icon" type="Label" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby/H"]
+[node name="Icon" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V/CreateLobby/H"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_8tl58")
 theme_override_font_sizes/font_size = 18
@@ -160,9 +160,43 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="M/H/Right/LobbyList/M/Content/V/CreateLobby/H"]
+[node name="Label" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V/CreateLobby/H"]
 layout_mode = 2
 text = "Create New Lobby (Host)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Connecting" type="CenterContainer" parent="M"]
+visible = false
+layout_mode = 2
+
+[node name="P" type="PanelContainer" parent="M/Connecting"]
+material = SubResource("ShaderMaterial_8obuy")
+layout_mode = 2
+
+[node name="Background" type="Panel" parent="M/Connecting/P"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="M/Connecting/P"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="Control" parent="M/Connecting/P/M"]
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="M/Connecting/P/M/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "Connecting"
 horizontal_alignment = 1
 vertical_alignment = 1
 

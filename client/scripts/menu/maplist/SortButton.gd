@@ -3,7 +3,8 @@ extends Node
 
 signal toggled(ascending:bool)
 
-@export var label:String:
+@export_category("Options")
+@export var text:String:
 	get: return $H/Label.text
 	set(value): $H/Label.text = value
 @export var ascending:bool = false
