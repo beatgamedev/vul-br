@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxmfr8ytmaijv"]
+[gd_scene load_steps=10 format=3 uid="uid://bxmfr8ytmaijv"]
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_jabis"]
 [ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_ibq53"]
-[ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_0s5h2"]
+[ext_resource type="Script" path="res://scripts/menu/Lobbies.gd" id="3_m3iar"]
 [ext_resource type="AudioStream" uid="uid://bwj2cvxtg26t1" path="res://sounds/lobbies.mp3" id="4_i3vr6"]
 [ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="5_htc46"]
 [ext_resource type="FontFile" uid="uid://pxmvrf70j3u1" path="res://fonts/Lato/Lato-Black.ttf" id="6_8tl58"]
 [ext_resource type="Script" path="res://scripts/menu/options/OptionsButton.gd" id="6_vyyju"]
+[ext_resource type="Script" path="res://scripts/menu/lobbies/DirectConnect.gd" id="7_bnwju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
 shader = ExtResource("5_htc46")
@@ -22,7 +23,7 @@ theme = ExtResource("1_jabis")
 texture = ExtResource("2_ibq53")
 expand_mode = 3
 stretch_mode = 6
-script = ExtResource("3_0s5h2")
+script = ExtResource("3_m3iar")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_i3vr6")
@@ -117,17 +118,18 @@ This requires you to either set up port forwarding (UDP 4444) to your local mach
 
 [node name="DirectConnection" type="HBoxContainer" parent="M/Lobbies/Right/LobbyList/M/Content/V"]
 layout_mode = 2
+script = ExtResource("7_bnwju")
 
 [node name="IP" type="LineEdit" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "IP Address"
 
-[node name="Button" type="Button" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection"]
+[node name="Join" type="Button" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection/Button"]
+[node name="Label" type="Label" parent="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection/Join"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,3 +224,6 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Content" type="Control" parent="Panel/M"]
 layout_mode = 2
+
+[connection signal="pressed" from="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection/Join" to="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection" method="join"]
+[connection signal="pressed" from="M/Lobbies/Right/LobbyList/M/Content/V/CreateLobby" to="M/Lobbies/Right/LobbyList/M/Content/V/DirectConnection" method="host"]

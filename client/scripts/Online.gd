@@ -17,7 +17,7 @@ func host(port:int=4444):
 	var error = peer.create_server(port, 32)
 	if error != OK: return error
 	multiplayer.multiplayer_peer = peer
-	_on_connected_ok()
+	connected.emit()
 	print("Hosting on port %s" % port)
 	return OK
 func join(address:String="127.0.0.1", port:int=4444):
