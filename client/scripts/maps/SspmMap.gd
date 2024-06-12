@@ -40,7 +40,7 @@ func load_metadata(file:FileAccess=null):
 			return
 		_music_offset = file.get_position()
 		_music_length = file.get_64()
-		file.seek(_music_offset + _music_length)
+		file.seek(_music_offset + _music_length + 8)
 		_notes_offset = file.get_position()
 	elif sspm_version == 2:
 		file.seek(0x26)

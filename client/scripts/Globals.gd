@@ -9,22 +9,17 @@ func _change_scene(scene:Node):
 
 func load_audio(file:PackedByteArray) -> AudioStream:
 	var first4 = file.slice(0, 4)
-	var first3 = file.slice(0, 3)
-	var first2 = file.slice(0, 2)
 	if first4 == PackedByteArray([0x4f, 0x67, 0x67, 0x53]): # OggS
+		print("OGG")
 		return AudioStreamOggVorbis.load_from_buffer(file)
-	elif (
-		first3 == PackedByteArray([0x49, 0x44, 0x33]) or
-		first2 == PackedByteArray([0xff, 0xf2]) or
-		first2 == PackedByteArray([0xff, 0xf3]) or
-		first2 == PackedByteArray([0xff, 0xfa]) or
-		first2 == PackedByteArray([0xff, 0xfb])
-	):
-		var stream = AudioStreamMP3.new()
+	elif first4 == PackedByteArray([0x52, 0x49, 0x46, 0x46]): # RIFF
+		print("WAV")
+		var stream = AudioStreamWAV.new()
 		stream.data = file
 		return stream
 	else:
-		var stream = AudioStreamWAV.new()
+		print("UNKNOWN (assume MP3)")
+		var stream = AudioStreamMP3.new()
 		stream.data = file
 		return stream
 
