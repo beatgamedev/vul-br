@@ -56,3 +56,4 @@ func _physics_process(delta):
 		if song_time < note.time + hit_window: break
 		game.score.add_miss()
 		current_notes.pop_front()
+	game.score.flush()

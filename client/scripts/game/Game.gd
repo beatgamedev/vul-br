@@ -28,9 +28,9 @@ func _ready():
 	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system()) + 1
 	DiscordRPC.end_timestamp = DiscordRPC.start_timestamp + int($AudioSyncManager.length)
 	DiscordRPC.refresh()
-	
+
 	score.score_changed.connect(_replicate_score)
-	score.combo_changed.connect(_replicate_score)
+	#score.combo_changed.connect(_replicate_score)
 
 func _replicate_score():
 	Online.local_player.update_score.rpc(score.score, score.combo, score.health)
