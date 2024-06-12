@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c1cjv4i1sp1hv" path="res://default_theme.tres" id="1_0nekl"]
 [ext_resource type="Texture2D" uid="uid://yb3hwdbl8qx8" path="res://textures/BackgroundNoise.tres" id="2_goa8m"]
-[ext_resource type="Script" path="res://scripts/menu/MainMenu.gd" id="3_nnsoi"]
+[ext_resource type="Script" path="res://scripts/menu/Lobbies.gd" id="3_nnsoi"]
 [ext_resource type="Texture2D" uid="uid://b0jpbbnpnbved" path="res://images/vulnus.png" id="5_k85xs"]
 [ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="6_ljlfp"]
 [ext_resource type="Texture2D" uid="uid://d2qmxl1plxgqv" path="res://images/cover_tex.png" id="7_j6o1s"]

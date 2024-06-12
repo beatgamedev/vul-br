@@ -17,6 +17,9 @@ corner_radius_bottom_left = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_q1sm8")
 script = ExtResource("1_r27os")
 text = "Approach Distance "
+tooltip = ""
+target = ""
+value = false
 
 [node name="H" type="HBoxContainer" parent="."]
 layout_mode = 2
