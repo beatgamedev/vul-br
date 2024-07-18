@@ -139,6 +139,7 @@ func _on_loading_maps(current:int, total:int, errors:int):
 	_init_substage.call_deferred("Loading maps (%s/%s)" % [current, total], 0, 1, current, total)
 signal on_init_finished()
 func _init_finished():
+	Globals.create_options_menu()
 	on_init_finished.emit()
 func init(): # This will run on another thread
 	var stage = 0

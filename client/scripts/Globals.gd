@@ -1,13 +1,10 @@
 extends Node
 
 var options_menu:Control
-func _create_options_menu():
+func create_options_menu():
+	if is_instance_valid(options_menu): return
 	options_menu = preload("res://prefabs/options/Options.tscn").instantiate()
-	options_menu.owner = self
 	add_sibling.call_deferred(options_menu)
-
-func _ready():
-	_create_options_menu.call_deferred()
 
 func _process(delta:float):
 	_background_noise(delta)
