@@ -26,7 +26,7 @@ func _fade_in():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property($FadeIn, "modulate:a", 0, 0.5)
+	tween.tween_property($FadeIn, "modulate:a", 0, 0.2)
 
 func _init_stage(text:String, stage:int, max_stage:int):
 	progress_label.text = text
@@ -43,7 +43,7 @@ func _init_finished():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property($C, "modulate:a", 0, 1.5)
+	tween.tween_property($C, "modulate:a", 0, 0.5)
 	await tween.finished
 	
 	_thread.wait_to_finish()

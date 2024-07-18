@@ -15,7 +15,7 @@ extends Control
 		value = _value
 		if Engine.is_editor_hint(): $H/SpinBox.value = _value
 
-@export_category("$H/SpinBox")
+@export_category("SpinBox")
 @export var prefix:String:
 	set(value):
 		prefix = value
