@@ -86,7 +86,7 @@ func load_cover():
 				var format = file.get_8()
 				var length = file.get_64()
 				var image = Image.create_from_data(width,height,mipmaps,format,file.get_buffer(length))
-				cover.set_image(image)
+				cover = ImageTexture.create_from_image(image)
 			2:
 				var image = Image.new()
 				var length = file.get_64()
@@ -197,4 +197,5 @@ func _load_from_file() -> Error:
 	if sspm_version > 2: return ERR_PRINTER_ON_FIRE
 	load_metadata(file)
 	file.close()
+	load_cover()
 	return OK

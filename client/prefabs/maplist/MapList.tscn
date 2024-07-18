@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ql7exnftci6x"]
+[gd_scene load_steps=7 format=3 uid="uid://ql7exnftci6x"]
 
 [ext_resource type="Shader" path="res://shaders/BlurBackground.gdshader" id="1_anaqw"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/MapList.gd" id="1_er3sm"]
 [ext_resource type="PackedScene" uid="uid://dum5do6l4u517" path="res://prefabs/maplist/SortButton.tscn" id="2_d8uf2"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/Filters.gd" id="3_irkgl"]
 [ext_resource type="Script" path="res://scripts/menu/maplist/Maps.gd" id="5_d032g"]
-[ext_resource type="PackedScene" uid="uid://byqfe7an8xr1t" path="res://prefabs/maplist/MapButton.tscn" id="6_ypkeq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8obuy"]
 shader = ExtResource("1_anaqw")
@@ -79,8 +78,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="Map" parent="Maps/M/Content/M/G" instance=ExtResource("6_ypkeq")]
-layout_mode = 2
-
+[connection signal="filters_updated" from="Filters" to="Maps" method="filter_buttons"]
+[connection signal="sorts_updated" from="Filters" to="Maps" method="sort_buttons"]
+[connection signal="text_changed" from="Filters/M/Content/Search" to="Filters" method="_search_text_changed"]
 [connection signal="toggled" from="Filters/M/Content/NameSort" to="Filters" method="_name_sort_changed"]
 [connection signal="toggled" from="Filters/M/Content/MapperSort" to="Filters" method="_mapper_sort_changed"]
+[connection signal="map_selected" from="Maps" to="." method="select_map"]
