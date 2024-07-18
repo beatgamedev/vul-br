@@ -17,7 +17,7 @@ func host(port:int=4444):
 	var error = peer.create_server(port, 32)
 	if error != OK: return error
 	multiplayer.multiplayer_peer = peer
-	connected.emit()
+	_on_connected_ok()
 	print("Hosting on port %s" % port)
 	return OK
 func join(address:String="127.0.0.1", port:int=4444):
@@ -47,7 +47,7 @@ func create_local_player():
 	local_player = players.get(local_peer_id)
 	local_player.awaiting_info = false
 	local_player.display_name = local_player_name
-	_player_setup.rpc(local_player.name)
+	#_player_setup.rpc(local_player.name)
 
 @rpc("any_peer", "call_remote", "reliable")
 func _player_setup(display_name:String):

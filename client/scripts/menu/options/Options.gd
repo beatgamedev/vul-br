@@ -33,7 +33,7 @@ func open():
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 1, 0.4)
-	tween.tween_property(actual_options, "position:x", 0, 1)
+	tween.tween_property(actual_options, "position:x", 0, 0.2)
 func close():
 	if tween: tween.kill()
 	is_open = false
@@ -42,7 +42,7 @@ func close():
 	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "modulate:a", 0, self.modulate.a * 0.4)
+	tween.tween_property(self, "modulate:a", 0, self.modulate.a * 0.1)
 	await tween.finished
 	visible = false
 	grab_focus()

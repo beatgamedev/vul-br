@@ -76,17 +76,23 @@ func expand_path(path:String) -> String: # Swaps out prefixes
 
 # Settings
 var settings:Dictionary = {
+	# Notes
 	"approach_distance": 30,
 	"approach_time": 1,
+	# Gameplay
 	"absolute_mode": false,
 	"camera_lock": true,
 	"sensitivity": 1,
 	"drift": true,
 	"parallax": 1,
+	# Paths
 	"map_folders": [],
+	# Graphics
 	"fullscreen": false,
 	"vsync": false,
-	"fps_limit": 300
+	"fps_limit": 300,
+	# Multiplayer
+	"nickname": "Player"
 }
 func update_settings():
 	if settings.fullscreen: get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN
@@ -95,6 +101,7 @@ func update_settings():
 	else: DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	if settings.fps_limit < 15: settings.fps_limit = 0
 	Engine.max_fps = settings.fps_limit
+	Online.local_player_name = settings.nickname
 func load_settings():
 	var settings_path = find_path("settings file")
 	if FileAccess.file_exists(settings_path):
