@@ -77,19 +77,21 @@ vertical_alignment = 1
 [node name="Fullscreen" parent="Options/H/S/M/V/Video" instance=ExtResource("2_k6e21")]
 layout_mode = 2
 text = "Fullscreen"
-tooltip = ""
 target = "fullscreen"
-value = false
 
 [node name="Vsync" parent="Options/H/S/M/V/Video" instance=ExtResource("2_k6e21")]
 layout_mode = 2
-text = "Vsync"
-tooltip = ""
+text = "VSync"
 target = "vsync"
-value = false
 
 [node name="FPS" parent="Options/H/S/M/V/Video" instance=ExtResource("1_mysq6")]
 layout_mode = 2
+text = "FPS Limit"
+target = "fps_limit"
+value = 300.0
+allow_greater = true
+step = 1.0
+custom_arrow_step = 5.0
 
 [node name="Notes" type="VBoxContainer" parent="Options/H/S/M/V"]
 layout_mode = 2
@@ -104,10 +106,26 @@ vertical_alignment = 1
 [node name="Distance" parent="Options/H/S/M/V/Notes" instance=ExtResource("1_mysq6")]
 layout_mode = 2
 tooltip_text = "how far away notes spawn"
+text = "Approach Distance"
+tooltip = "how far away notes spawn"
+target = "approach_distance"
+value = 30.0
+suffix = "m"
+allow_greater = true
+step = 0.001
+custom_arrow_step = 5.0
 
 [node name="Time" parent="Options/H/S/M/V/Notes" instance=ExtResource("1_mysq6")]
 layout_mode = 2
 tooltip_text = "how long notes are visible for"
+text = "Approach Time"
+tooltip = "how long notes are visible for"
+target = "approach_time"
+value = 1.0
+suffix = "s"
+allow_greater = true
+step = 0.001
+custom_arrow_step = 0.05
 
 [node name="Camera" type="VBoxContainer" parent="Options/H/S/M/V"]
 layout_mode = 2
@@ -125,21 +143,38 @@ tooltip_text = "good for tablets"
 text = "Absolute Mode"
 tooltip = "good for tablets"
 target = "absolute_mode"
-value = false
 
 [node name="Sensitivity" parent="Options/H/S/M/V/Camera" instance=ExtResource("1_mysq6")]
 layout_mode = 2
 tooltip_text = "how fast the camera/cursor moves"
+text = "Sensitivity"
+tooltip = "how fast the camera/cursor moves"
+target = "sensitivity"
+value = 1.0
+suffix = "x"
+allow_greater = true
+allow_lesser = true
+step = 0.001
+custom_arrow_step = 0.05
 
 [node name="Parallax" parent="Options/H/S/M/V/Camera" instance=ExtResource("1_mysq6")]
 layout_mode = 2
 tooltip_text = "how much the camera moves"
+text = "Camera Parallax"
+tooltip = "how much the camera moves"
+target = "parallax"
+value = 1.0
+suffix = "x"
+allow_greater = true
+allow_lesser = true
+step = 0.001
+custom_arrow_step = 0.1
 
 [node name="Camlock" parent="Options/H/S/M/V/Camera" instance=ExtResource("2_k6e21")]
 layout_mode = 2
-tooltip_text = "whether the camera moves or not"
+tooltip_text = "whether the camera spins or not"
 text = "Camera Lock"
-tooltip = "whether the camera moves or not"
+tooltip = "whether the camera spins or not"
 target = "camera_lock"
 value = true
 
