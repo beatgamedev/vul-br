@@ -37,3 +37,6 @@ func _update(value):
 	if Engine.is_editor_hint(): return
 	Vulnus.settings[target] = value
 	Vulnus.save_settings()
+
+func _focus_lost():
+	_update($H/LineEdit.text)
