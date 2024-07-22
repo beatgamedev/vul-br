@@ -114,10 +114,10 @@ func load_notes():
 			note.index = i
 			note.time = float(file.get_32())/1000
 			if file.get_8() == 1:
-				note.x = 2 * (-file.get_float() + 1)
+				note.x = 2 * (file.get_float() - 1)
 				note.y = 2 * (-file.get_float() + 1)
 			else:
-				note.x = 2 * (-float(file.get_8()) + 1)
+				note.x = 2 * (float(file.get_8()) - 1)
 				note.y = 2 * (-float(file.get_8()) + 1)
 			notes.append(note)
 	elif sspm_version == 2:
@@ -152,7 +152,7 @@ func load_notes():
 			if note_data[1] != 7: continue
 			var note = Map.Note.new()
 			note.time = float(note_data[0])/1000
-			note.x = 2 * (-note_data[2].x + 1)
+			note.x = 2 * (note_data[2].x - 1)
 			note.y = 2 * (-note_data[2].y + 1)
 			notes.append(note)
 		notes.sort_custom(func(a,b): return a.time < b.time)
