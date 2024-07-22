@@ -155,8 +155,8 @@ func load_notes():
 			note.x = 2 * (-note_data[2].x + 1)
 			note.y = 2 * (-note_data[2].y + 1)
 			notes.append(note)
+		notes.sort_custom(func(a,b): return a.time < b.time)
 		for i in notes.size(): notes[i].index = i
-	notes.sort_custom(func(a,b): return a.time < b.time)
 	notes_loaded.emit()
 func _read_data_type(file:FileAccess,skip_type:bool=false,skip_array_type:bool=false,type:int=0,array_type:int=0):
 	if !skip_type:
