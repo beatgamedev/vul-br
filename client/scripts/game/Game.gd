@@ -15,7 +15,7 @@ func _ready():
 		score._max_combo_score += sqrt(clampi(floor((i+1)/10)+1, 1, 8))
 
 	$AudioSyncManager.start.call_deferred(-1)
-	$AudioSyncManager.finished.connect(get_tree().change_scene_to_file.bind("res://scenes/Menu.tscn"))
+	$AudioSyncManager.finished.connect(get_tree().change_scene_to_file.bind("res://scenes/Lobby.tscn"))
 
 	$Preload.queue_free.call_deferred()
 

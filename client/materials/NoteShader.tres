@@ -1,8 +1,9 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://2pji8te053l1"]
 
 [resource]
-transparency = 1
+transparency = 4
 cull_mode = 2
 depth_draw_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true

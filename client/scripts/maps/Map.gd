@@ -20,7 +20,7 @@ var mappers_string:String:
 var difficulty:String
 func load_metadata(): pass
 
-var cover:ImageTexture = ImageTexture.create_from_image(preload("res://images/cover.png"))
+var cover:Texture2D = preload("res://images/cover.png")
 func load_cover(): pass
 var music:AudioStream
 func load_music(): pass
