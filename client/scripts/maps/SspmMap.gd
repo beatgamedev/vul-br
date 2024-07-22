@@ -19,7 +19,7 @@ var _markers_offset:int = 0
 
 func load_metadata(file:FileAccess=null):
 	if file == null: file = FileAccess.open(path, FileAccess.READ)
-	file.seek(10)
+	file.seek(8)
 	if sspm_version == 1:
 		id = file.get_line()
 		title = file.get_line()
@@ -38,7 +38,7 @@ func load_metadata(file:FileAccess=null):
 		if file.get_8() != 1:
 			broken = true
 			return
-		_music_offset = file.get_position()
+		_music_offset = file.get_position() + 8
 		_music_length = file.get_64()
 		file.seek(_music_offset + _music_length + 8)
 		_notes_offset = file.get_position()
@@ -155,8 +155,8 @@ func load_notes():
 			note.x = 2 * (-note_data[2].x + 1)
 			note.y = 2 * (-note_data[2].y + 1)
 			notes.append(note)
-		notes.sort_custom(func(a,b): return a.time < b.time)
 		for i in notes.size(): notes[i].index = i
+	notes.sort_custom(func(a,b): return a.time < b.time)
 	notes_loaded.emit()
 func _read_data_type(file:FileAccess,skip_type:bool=false,skip_array_type:bool=false,type:int=0,array_type:int=0):
 	if !skip_type:
