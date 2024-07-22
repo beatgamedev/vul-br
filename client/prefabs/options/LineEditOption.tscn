@@ -30,4 +30,5 @@ vertical_alignment = 1
 layout_mode = 2
 max_length = 20
 
-[connection signal="text_changed" from="H/LineEdit" to="." method="_update"]
+[connection signal="focus_exited" from="H/LineEdit" to="." method="_focus_lost"]
+[connection signal="text_submitted" from="H/LineEdit" to="." method="_update"]
