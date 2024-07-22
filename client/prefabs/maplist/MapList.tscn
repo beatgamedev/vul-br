@@ -76,7 +76,7 @@ theme_override_constants/margin_right = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
+columns = 2
 
 [connection signal="filters_updated" from="Filters" to="Maps" method="filter_buttons"]
 [connection signal="sorts_updated" from="Filters" to="Maps" method="sort_buttons"]
