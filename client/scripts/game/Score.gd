@@ -55,6 +55,11 @@ func add_hit(points:int):
 			multiplier += 1
 			sub_multiplier = 0
 		_is_multiplier_changed = true
+		
+	if failed and multiplier == 8 and sub_multiplier == 10:
+		failed = false
+		health += 1
+		_is_health_changed = true
 
 	_combo_score += sqrt(multiplier)
 	_base_score += 1

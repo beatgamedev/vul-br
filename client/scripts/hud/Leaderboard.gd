@@ -12,6 +12,7 @@ func _order_items():
 		var player = ordered_players[i]
 		var item = items.get(player.peer_id)
 		if item == null: break
+		item.get_node("Placement").text = "#%s" % [i + 1]
 		item_container.move_child(item, i)
 
 func _ready():
