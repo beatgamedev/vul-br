@@ -128,7 +128,7 @@ func save_settings():
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(settings, " ", false, false))
 	file.close()
-	print("Settings saved")
+	#print("Settings saved")
 	update_settings()
 
 # Maps

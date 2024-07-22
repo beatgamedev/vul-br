@@ -1,7 +1,7 @@
 extends VBoxContainer
 
-signal map_chosen
-signal map_selected
+signal map_chosen(map: Map)
+signal map_selected(map: Map)
 
 var selected_map: Map
 
