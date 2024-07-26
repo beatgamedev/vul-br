@@ -535,7 +535,6 @@ player = NodePath("../Player")
 [node name="AudioSyncManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_hyrnf")
 audio_player = NodePath("AudioStreamPlayer")
-length = -1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioSyncManager"]
 

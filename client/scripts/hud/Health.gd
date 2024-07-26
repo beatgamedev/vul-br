@@ -1,15 +1,15 @@
 extends Node
 
-@export var game:Game
+@export var game: Game
 
-@onready var health_progress = $SubViewport/Control/Health
+@onready var health_progress: ProgressBar = $SubViewport/Control/Health
 
-func _ready():
+func _ready() -> void:
 	update_health()
 	game.score.health_changed.connect(update_health)
 
-var _tween:Tween
-func update_health():
+var _tween: Tween
+func update_health() -> void:
 	if _tween != null: _tween.kill()
 	_tween = (create_tween()
 	.set_ease(Tween.EASE_OUT)

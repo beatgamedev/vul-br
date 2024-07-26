@@ -4,24 +4,24 @@ extends Control
 
 var is_open:bool = false
 
-func _ready():
+func _ready() -> void:
 	visible = false
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if is_open: move_to_front()
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("options"):
 		if !is_open: open()
 		else: close()
 
-func _gui_input(event):
+func _gui_input(event: InputEvent) -> void:
 	if !is_open: return
 	if event is InputEventMouseButton:
 		if event.position.x > 432: close()
 
 var tween:Tween
-func open():
+func open() -> void:
 	if tween: tween.kill()
 	is_open = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -34,7 +34,7 @@ func open():
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "modulate:a", 1, 0.4)
 	tween.tween_property(actual_options, "position:x", 0, 0.2)
-func close():
+func close() -> void:
 	if tween: tween.kill()
 	is_open = false
 	mouse_filter = Control.MOUSE_FILTER_PASS

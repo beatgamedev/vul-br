@@ -7,34 +7,34 @@ signal map_selected
 
 var buttons:Array = []
 
-func _ready():
+func _ready() -> void:
 	create_buttons()
 
-func create_buttons():
+func create_buttons() -> void:
 	for map in Vulnus.maps:
-		var button = map_button_prefab.instantiate()
+		var button: Button = map_button_prefab.instantiate()
 		button.map = map
 		button.pressed.connect(select_map.bind(button))
 		buttons.append(button)
 		button_grid.add_child(button)
 
-func select_map(button):
+func select_map(button: Button) -> void:
 	map_selected.emit(button.map)
 
-func sort_buttons(sort_by:String, direction:bool):
-	var sort_func = func(a, b):
+func sort_buttons(sort_by: String, direction: bool) -> void:
+	var sort_func: Callable = func(a: Map, b: Map) -> bool:
 		return a.map.get(sort_by) > b.map.get(sort_by)
 	buttons.sort_custom(sort_func)
 	if !direction: buttons.reverse()
-	for i in buttons.size():
+	for i: int in buttons.size():
 		button_grid.move_child(buttons[i], i)
 
-func filter_buttons(search_text:String):
+func filter_buttons(search_text: String) -> void:
 	if search_text.length() == 0:
-		for button in buttons:
+		for button: Button in buttons:
 			button.visible = true
 		return
-	for button in buttons:
-		var title_match = button.map.title.containsn(search_text)
-		var mapper_match = button.map.mappers_string.containsn(search_text)
+	for button: Button in buttons:
+		var title_match: bool = button.map.title.containsn(search_text)
+		var mapper_match: bool = button.map.mappers_string.containsn(search_text)
 		button.visible = title_match or mapper_match

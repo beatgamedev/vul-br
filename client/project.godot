@@ -16,6 +16,7 @@ run/main_scene="res://scenes/Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="vulbr"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=300
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://images/vulnus.png"
@@ -27,6 +28,18 @@ DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Globals="*res://scripts/Globals.gd"
 Vulnus="*res://scripts/Vulnus.gd"
 Online="*res://scripts/Online.gd"
+
+[debug]
+
+gdscript/warnings/standalone_expression=2
+gdscript/warnings/standalone_ternary=2
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/inferred_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+gdscript/warnings/static_called_on_instance=2
 
 [display]
 

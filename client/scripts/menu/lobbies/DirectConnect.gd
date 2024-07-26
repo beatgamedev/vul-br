@@ -1,10 +1,10 @@
 extends Control
 
-@onready var ip = $IP
+@onready var ip: LineEdit = $IP
 
-func join():
+func join() -> void:
 	$/root/Lobbies/M/Connecting.visible = true
 	Online.join.call_deferred(ip.text)
-func host():
+func host() -> void:
 	$/root/Lobbies/M/Connecting.visible = true
 	Online.host.call_deferred()

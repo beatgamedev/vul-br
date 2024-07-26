@@ -1,4 +1,4 @@
 extends Button
 
-func _pressed():
+func _pressed() -> void:
 	Globals.options_menu.open()

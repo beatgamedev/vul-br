@@ -1,11 +1,11 @@
 extends Control
 
-var _thread:Thread
+var _thread: Thread
 
-@onready var progress_label = $C/P/M/V/ProgressLabel
-@onready var progress_bar = $C/P/M/V/ProgressBar
+@onready var progress_label: Label = $C/P/M/V/ProgressLabel
+@onready var progress_bar: ProgressBar = $C/P/M/V/ProgressBar
 
-func _ready():
+func _ready() -> void:
 	$FadeIn.visible = true
 	_fade_in.call_deferred()
 	
@@ -18,29 +18,29 @@ func _ready():
 	_thread = Thread.new()
 	_thread.start.call_deferred(Vulnus.init)
 
-func _exit_tree():
+func _exit_tree() -> void:
 	if _thread.is_started(): _thread.wait_to_finish()
 
-func _fade_in():
+func _fade_in() -> void:
 	$FadeIn.visible = true
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property($FadeIn, "modulate:a", 0, 0.2)
 
-func _init_stage(text:String, stage:int, max_stage:int):
+func _init_stage(text: String, stage: int, max_stage: int) -> void:
 	progress_label.text = text
 	progress_bar.value = stage
 	progress_bar.max_value = max_stage
-func _init_substage(text:String, stage:int, max_stage:int, substage:int, max_substage:int):
+func _init_substage(text: String, stage: int, max_stage: int, substage: int, max_substage: int) -> void:
 	progress_label.text = text
 	progress_bar.value = float(stage) + float(float(substage) / float(max_substage))
 	progress_bar.max_value = max_stage
 
-func _init_finished():
-	var menu = preload("res://scenes/Lobbies.tscn").instantiate()
+func _init_finished() -> void:
+	var menu: Node = preload("res://scenes/Lobbies.tscn").instantiate()
 	
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property($C, "modulate:a", 0, 0.5)
